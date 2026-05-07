@@ -19,6 +19,16 @@
         src: url("fonts/Newsreader.ttf") format("truetype");
       }
 
+      @font-face {
+        font-family: "Yale";
+        src: url("Yale2024-Roman.otf");
+      }
+
+      @font-face {
+        font-family: "YaleItalic";
+        src: url("Yale2024-BoldItalic.otf");
+      }
+
       /* ─────────────────────────────────────────
         BASE / GLOBALS
       ───────────────────────────────────────── */
@@ -36,7 +46,7 @@
 
       p {
         max-width: 50%;
-        font-family: "Newsreader", "Georgia", serif;
+        font-family: "Yale", serif;
         margin: 0 auto 2rem auto;
         font-size: 19px;
         line-height: 1.6;
@@ -78,7 +88,7 @@
       }
 
       .hero__headline {
-        font-family: "Newsreader", "Georgia", serif;
+        font-family: "Yale", serif;
         font-weight: 400;
         font-size: clamp(3rem, 6vw, 5rem);
         line-height: 1.08;
@@ -109,7 +119,7 @@
       }
 
       .hero__date {
-        font-family: "NYTFranklinLight", sans-serif;
+        font-family: "Yale", serif;
         font-weight: 400;
         font-size: clamp(0.7rem, 1vw, 0.85rem);
         letter-spacing: 0.04em;
@@ -120,16 +130,26 @@
         NACC BLUE ACCENT
       ───────────────────────────────────────── */
       .nacc-blue {
-        color: #00356b;
+        color: #63b8e7;
       }
 
       /* ─────────────────────────────────────────
         LAND ACKNOWLEDGMENT INTRO
       ───────────────────────────────────────── */
-      .land-ack__text .highlight {
+      /* .land-ack__text .highlight {
         color: #00356b;
         font-weight: 600;
         transition: color 0.4s ease;
+      } */
+        /* Words start dim */
+      .transcript span {
+        color: #444444;
+        transition: color 0.3s ease;
+      }
+    
+      /* Words turn this color when "spoken" */
+      .transcript span.spoken {
+        color: #63b8e7; /* NACC blue */
       }
 
       @keyframes fadeIn {
@@ -205,7 +225,7 @@
       .step p {
         padding: 1rem;
         font-size: 1.25rem;
-        font-family: "Newsreader", "Georgia", serif;
+        font-family: "Yale", serif;
         line-height: 1.6;
         max-width: 100%;
       }
@@ -483,7 +503,7 @@
       <div class="hero__scrim"></div>
       <div class="hero__text">
         <h1 class="hero__headline">A Home of Many Nations.</h1>
-        <p class="hero__byline">By Banana</p>
+        <p class="hero__byline">By Emma Slagle</p>
         <p class="hero__date">MAY 2026</p>
       </div>
     </div>
@@ -493,27 +513,26 @@
     (Vertical Scrollama — same as Unit 3 pattern)
     CT territories map on right, text on left.
   ═══════════════════════════════════════ -->
-    <section id="scrolly">
-      <div class="sticky-thing">
-        <div id="zoomBox">
+    <div style="padding: 4%; margin-bottom: 20%; margin-top: 20%;">
+      <p class="transcript">"Yale University acknowledges that indigenous peoples and nations, including <span class="highlight nacc-blue">Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke</span>, <span class="highlight nacc-blue">Golden Hill Paugussett</span>, <span class="highlight nacc-blue">Niantic</span>, and the <span class="highlight nacc-blue">Quinnipiac</span> and other Algonquian speaking peoples, have stewarded through generations the lands and waterways of what is now the state of Connecticut. We honor and respect the enduring relationship that exists between these peoples and nations and this land."</p>
+    </div>
           <!-- PLACEHOLDER: Map of Connecticut with Indigenous nation territories colored/highlighted.
                Shows Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke,
                Golden Hill Paugussett, Niantic, Quinnipiac territories. -->
-          <img id="scrollyPhoto" class="photoDiv" src="images/beat1/ct-territories-full.png">
-        </div>
-      </div>
-      <div class="scrolly-overlay">
-        <div class="step" id="step1">
-          <p>"Yale University acknowledges that indigenous peoples and nations, including <span class="highlight nacc-blue">Mohegan</span>, <span class="highlight nacc-blue">Mashantucket Pequot</span>, <span class="highlight nacc-blue">Eastern Pequot</span>, <span class="highlight nacc-blue">Schaghticoke</span>, <span class="highlight nacc-blue">Golden Hill Paugussett</span>, <span class="highlight nacc-blue">Niantic</span>, and the <span class="highlight nacc-blue">Quinnipiac</span> and other Algonquian speaking peoples, have stewarded through generations the lands and waterways of what is now the state of Connecticut. We honor and respect the enduring relationship that exists between these peoples and nations and this land."</p>
-        </div>
-        <div class="step" id="step2">
+          <!-- <img id="scrollyPhoto" class="photoDiv" src="images/beat1/ct-territories-full.png"> -->
+      <!-- <section id="scrolly">
+        <div class="sticky-thing">
+          <div id="zoomBox"> -->
+        <div style="padding: 4%;">
           <p>Read above is Yale University's land acknowledgment— the way you've heard it spoken aloud at the start of public events, ceremonies, or meetings on campus. Land acknowledgments are formal statements recognizing the Indigenous peoples who have stewarded a place, and the ongoing presence of those communities today. But the acknowledgment names nations most Yalies have never seen on a map.</p>
-        </div>
-        <div class="step" id="step3">
           <p>This is the story of how those nations, and many, many more, converge on one house at 26 High Street.</p>
         </div>
+        <div id="zoomBox">
+          <img id="scrollyPhoto" class="photoDiv" src="images/beat1/ct-territories-full.png">
+        </div>
+          <!-- </div>
       </div>
-    </section>
+    </section> -->
 
   <!-- ═══════════════════════════════════════
     TRANSITION: Yale context paragraph
@@ -677,9 +696,9 @@
         <div class="step" id="step14">
           <p>And continued to grow. Through the 2010s, a succession of Native deans and assistant directors reshaped what the space meant and could hold. In 2016, Kapi'olani Laronal (<span class="nacc-blue">Kanaka Maoli, Haida/Tsimsian tribes of Alaska</span>) became the first assistant director to the space, bringing Native Hawaiian and Pacific Islander community formally into the center.</p>
         </div>
-        <div class="step" id="step15">
+        <!-- <div class="step" id="step15">
           <p>Many nations, one house.</p>
-        </div>
+        </div> -->
         <div class="step" id="step16" style="margin-bottom: 10rem;">
           <!-- VISUAL: Map resolves to wall of nations flags -->
           <p></p>
@@ -707,7 +726,7 @@
     HERO STATEMENT: "One house."
   ═══════════════════════════════════════ -->
     <div class="hero-statement">
-      <h2>One house.</h2>
+      <h2>Many Nations. One house.</h2>
     </div>
 
     <!-- PLACEHOLDER: NACC house today -->
@@ -722,12 +741,14 @@
       <div class="hero__text" style="justify-content: flex-end; padding-bottom: 4rem;">
         <h1 class="hero__headline" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Special Thanks</h1>
         <p class="hero__subhead" style="font-size: 0.95rem; max-width: 40rem; text-align: left; line-height: 1.8;">
-          This project would not exist without Mara Gutierrez— her assistance over text, and her stunning, deeply researched thesis on the NACC and Indigenous presence at Yale made much of this story possible. The depth of her archival work was astounding, and her presence at Yale, the NACC, and my life has been nothing but warm.
+          This project would not exist without Mara Gutierrez— her assistance over text, and her stunning, deeply researched thesis on the NACC and Indigenous presence at Yale made much of this story possible. 
+          The depth of her archival work was astounding, and her presence at Yale, the NACC, and my life has been nothing but warm.
           <br><br>To Joshua Ching, for consulting on this project and being an always steady source of inspiration during my time here.
           <br><br>To Zitlali Garcia Mondragon, who helped begin to imagine a visual telling of this story alongside Mara, Josh, and me last year!
           <br><br>To the Native American Cultural Center at 26 High St. and the people who make it what it is— especially Dean M and AD Denise Morales!
           <br><br>To Professor Aaron Reiss for his continued support and guidance that carried this project!
           <br><br>And to the kūpuna, ancestors, and elders— every person who has paved the way at this institution and carried this work forward so that I could stand here now! Mahalo.
+          <br><br>Last credits to https://www.gingko.pro/ for itʻs helpful horizontal scroll implementation I referenced.
         </p>
       </div>
     </div>
@@ -926,6 +947,42 @@
       }
     });
 
+  });
+</script>
+
+// <!-- ═══════════════════════════════════════
+//    SCRIPT 4: Land Acknowledgment "Spoken Word" Highlight
+//    ═══════════════════════════════════════ -->
+<script>
+// Speed: milliseconds per word. Lower = faster.
+  var SPEED = 400;
+
+  // Find all elements with class "transcript"
+  var transcripts = document.querySelectorAll(".transcript");
+
+  transcripts.forEach(function (el) {
+    // Split the paragraph's text into individual words,
+    // wrap each in a <span>, and replace the original text
+    var words = el.textContent.split(/\s+/);
+    el.innerHTML = words
+      .map(function (word) {
+        return '<span>' + word + '</span>';
+      })
+      .join(' ');
+
+    // Get all the spans we just created
+    var spans = el.querySelectorAll("span");
+    var i = 0;
+
+    // Every SPEED milliseconds, mark the next word as "spoken"
+    var interval = setInterval(function () {
+      if (i < spans.length) {
+        spans[i].classList.add("spoken");
+        i++;
+      } else {
+        clearInterval(interval); // Stop when all words are highlighted
+      }
+    }, SPEED);
   });
 </script>
 
