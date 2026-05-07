@@ -1,203 +1,937 @@
-<!-- The originial version of this template was made by Johnathan Soma and then messed with and customized by Aaron Reiss -->
+<!-- Based on the Yale Scrollama template by Johnathan Soma, customized by Aaron Reiss and Emma Slagle -->
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Lexend:wght@100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-		<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
-      <link rel="stylesheet" href="styles.css">
+    <style>
+      /* ─────────────────────────────────────────
+        FONTS
+      ───────────────────────────────────────── */
+      @font-face {
+        font-family: "NYTFranklinLight";
+        src: url("fonts/NYTFranklinLight.otf") format("truetype");
+      }
+
+      @font-face {
+        font-family: "Newsreader";
+        src: url("fonts/Newsreader.ttf") format("truetype");
+      }
+
+      /* ─────────────────────────────────────────
+        BASE / GLOBALS
+      ───────────────────────────────────────── */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #faf8f5;
+        color: #222;
+      }
+
+      h1 {
+        max-width: 50%;
+        margin: 4rem auto 2rem auto;
+      }
+
+      p {
+        max-width: 50%;
+        font-family: "Newsreader", "Georgia", serif;
+        margin: 0 auto 2rem auto;
+        font-size: 19px;
+        line-height: 1.6;
+      }
+
+      /* ─────────────────────────────────────────
+        HERO
+      ───────────────────────────────────────── */
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .hero__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero__scrim {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.42);
+      }
+
+      .hero__text {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 1.5rem;
+      }
+
+      .hero__headline {
+        font-family: "Newsreader", "Georgia", serif;
+        font-weight: 400;
+        font-size: clamp(3rem, 6vw, 5rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: #fff;
+        max-width: 400vw;
+        margin-bottom: 0.4rem;
+      }
+
+      .hero__subhead {
+        font-family: "NYTFranklinLight", sans-serif;
+        font-weight: 400;
+        font-size: clamp(1rem, 2vw, 1.4rem);
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+        color: rgba(255, 255, 255, 0.88);
+        max-width: 35rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero__byline {
+        font-family: "NYTFranklinLight", sans-serif;
+        font-weight: 400;
+        font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .hero__date {
+        font-family: "NYTFranklinLight", sans-serif;
+        font-weight: 400;
+        font-size: clamp(0.7rem, 1vw, 0.85rem);
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* ─────────────────────────────────────────
+        NACC BLUE ACCENT
+      ───────────────────────────────────────── */
+      .nacc-blue {
+        color: #00356b;
+      }
+
+      /* ─────────────────────────────────────────
+        LAND ACKNOWLEDGMENT INTRO
+      ───────────────────────────────────────── */
+      .land-ack__text .highlight {
+        color: #00356b;
+        font-weight: 600;
+        transition: color 0.4s ease;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      /* ─────────────────────────────────────────
+        VERTICAL SCROLLYTELLING (Beats 1 & 4)
+        Same Scrollama pattern as Unit 3
+      ───────────────────────────────────────── */
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: #00356b;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .modal-content {
+        background: #faf8f5;
+        padding: 2rem;
+        max-width: 400px;
+        border-radius: 8px;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: 14px;
+      }
+
+      .modal button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+      }
+
+      #scrolly, #scrolly4 {
+        position: relative;
+        padding: 1rem;
+      }
+
+      .scrolly-overlay {
+        position: relative;
+        padding: 0;
+        max-width: 35rem;
+        margin-left: 2px;
+        margin-right: auto;
+      }
+
+      .sticky-thing {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        z-index: 0;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .step {
+        margin: 0 auto 2rem auto;
+        margin-bottom: 25rem;
+        background-color: #fff;
+        color: black;
+        text-align: center;
+      }
+
+      .step p {
+        padding: 1rem;
+        font-size: 1.25rem;
+        font-family: "Newsreader", "Georgia", serif;
+        line-height: 1.6;
+        max-width: 100%;
+      }
+
+      /* Zoom boxes — map on right, text on left (vertical scrolly sections) */
+      #zoomBox, #zoomBox4 {
+        overflow: clip;
+        margin-left: 44vw !important;
+        max-width: 53vw !important;
+        max-height: none !important;
+      }
+
+      .photoDiv {
+        max-width: 100%;
+        max-height: 90vh;
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        object-fit: contain;
+        transition:
+          margin 1.5s 0s,
+          transform 2.5s 0s;
+      }
+
+      /* ─────────────────────────────────────────
+        HORIZONTAL SCROLLYTELLING (Beats 2 & 3)
+        GSAP ScrollTrigger: pins the section,
+        translates vertical scroll → horizontal.
+        Map fills the background, text cards
+        sit at the bottom.
+      ───────────────────────────────────────── */
+
+      /* The outer wrapper — this is what GSAP pins */
+      #horizontal-section {
+        position: relative;
+        overflow: hidden;
+        /* height is 100vh when pinned; GSAP handles this */
+      }
+
+      /* The background map image — fills the viewport behind the cards.
+         This is an <img> that gets its src swapped by JS, just like
+         the vertical scrolly sections. It sits behind everything. */
+      #horizontal-map {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center 35%;
+        z-index: 0;
+        transition: opacity 0.6s ease;
+        /* Slightly padded so it doesn't bleed to edges */
+        padding: 2vh 4vw 22vh 4vw;
+        box-sizing: border-box;
+      }
+
+      /* The horizontal track — a flex row of panels.
+         Each panel is 100vw wide, so the total width
+         is (number of panels × 100vw). GSAP scrubs
+         translateX on this container. */
+      #horizontal-track {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        /* width is set dynamically, but we ensure no wrap */
+        flex-wrap: nowrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Each panel = one "step" in the horizontal scroll.
+         100vw wide, full viewport height. The text card
+         sits at the bottom of each panel. */
+      .h-panel {
+        flex: 0 0 100vw;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 0 0 4vh 4vw;
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      /* The text card that appears at the bottom of each panel.
+         Semi-transparent white background so the map shows through. */
+      .h-card {
+        background: rgba(255, 255, 255, 0.92);
+        max-width: 32rem;
+        padding: 1.5rem 2rem;
+        font-family: "Newsreader", "Georgia", serif;
+        font-size: 1.15rem;
+        line-height: 1.6;
+        color: #222;
+        /* Subtle shadow so it lifts off the map */
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .h-card p {
+        max-width: 100%;
+        margin: 0 0 0.8rem 0;
+        font-size: 1.15rem;
+        padding: 0;
+      }
+
+      .h-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Portrait images inside horizontal cards */
+      .h-card img {
+        max-width: 220px;
+        margin: 0.8rem auto 0;
+        display: block;
+      }
+
+      /* Year labels that can sit above the card for emphasis */
+      .h-year {
+        font-family: "NYTFranklinLight", sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 0.5rem;
+      }
+
+      /* ─────────────────────────────────────────
+        SPLIT LAYOUT (text + image side by side)
+      ───────────────────────────────────────── */
+      .split {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        gap: 4rem;
+        max-width: 90rem;
+        margin: 6rem auto;
+        padding: 1rem;
+        width: 100%;
+      }
+
+      .split__text {
+        flex: 0 0 35rem;
+        max-width: 35rem;
+        text-align: center;
+        margin-left: 2px;
+      }
+
+      .split__text p {
+        max-width: 60%;
+        font-family: "Newsreader", "Georgia", serif;
+        font-size: 1.25rem;
+        padding: 1rem;
+        margin: 0 auto 1.2rem auto;
+      }
+
+      .split__image {
+        flex: 0 0 53%;
+      }
+
+      .split__image img {
+        width: 100%;
+        display: block;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+
+      /* ─────────────────────────────────────────
+        HERO STATEMENT (full-screen text moment)
+      ───────────────────────────────────────── */
+      .hero-statement {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 4rem 2rem;
+        text-align: center;
+        background-color: #00356b;
+      }
+
+      .hero-statement h2 {
+        font-family: "Newsreader", "Georgia", serif;
+        font-weight: 400;
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.15;
+        color: #fff;
+        letter-spacing: -0.01em;
+      }
+
+      /* ─────────────────────────────────────────
+        CREDITS
+      ───────────────────────────────────────── */
+      .credits {
+        max-width: 42rem;
+        margin: 4rem auto;
+        padding: 2rem;
+        font-family: "Newsreader", "Georgia", serif;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #555;
+        text-align: center;
+      }
+
+      .credits p {
+        max-width: 100%;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      /* ─────────────────────────────────────────
+        RESPONSIVE / SIDE-BY-SIDE (vertical sections)
+      ───────────────────────────────────────── */
+      @media only screen and (min-width: 700px) {
+        .split {
+          flex-direction: column;
+        }
+        .split__text {
+          flex: 1;
+        }
+        .split__image {
+          flex: 1;
+          overflow: hidden;
+        }
+
+        #scrolly.side-by-side,
+        #scrolly4.side-by-side {
+          display: flex;
+        }
+
+        #scrolly.side-by-side > div {
+          flex-basis: 0;
+          flex-grow: 1;
+          flex-shrink: 1;
+          padding: 0.75em;
+        }
+
+        #scrolly.side-by-side .scrolly-overlay {
+          margin-top: 70vh;
+          order: 0;
+          min-width: 15rem;
+          max-width: 20rem;
+        }
+
+        #scrolly.side-by-side .sticky-thing {
+          order: 1;
+          flex-grow: 2;
+        }
+
+        #scrolly .scrolly-overlay .step:last-child,
+        #scrolly4 .scrolly-overlay .step:last-child {
+          padding-bottom: 40vh;
+        }
+      }
+    </style>
+
+    <!-- Libraries -->
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+    <!-- GSAP + ScrollTrigger for horizontal scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   </head>
 
   <body>
-    <div>
-	<!-- <h1 style="font-size: 4rem;">Yale's Home of Many Nations</h1> -->
-    <div>
-        <h3>"Yale University acknowledges that indigenous peoples and nations, including Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke, Golden Hill Paugussett, Niantic, and the Quinnipiac and other Algonquian speaking peoples, have stewarded through generations the lands and waterways of what is now the state of Connecticut.  We honor and respect the enduring relationship that exists between these peoples and nations and this land."</h3>
-    </div>
-    <p>Above is Yale University’s land acknowledgment— the way you've heard it spoken aloud at public events or meetings many times on campus. Commonly used in academic, cultural, or public gatherings, land acknowledgments are formal statements intending to recognize the Indigenous peoples who have stewarded a particular area, past, present, and future, acknowledging both history and the ongoing presence of Indigenous communities. </p>  
-      <section id="scrolly">
-        <div class="sticky-thing">
-          <div id="zoomBox">
-<!-- Sticky Thing 1 goes below this line -->
-            <img id="scrollyPhoto" class="photoDiv" src="images/ct1.jpg">
-<!-- Sticky Thing 1 goes above this line -->
-          </div>        
-        </div>
-
-        <div class="scrolly-overlay">
-          <div class="step" id="step1">
-            <p>Yale University occupies the traditional lands of the <span style="color: rgb(232, 210, 42);">Mohegan,</span></p>
-          </div>
-          <div class="step" id="step2">
-            <p><span style="color: rgb(167, 87, 98);">Mohican,</span></p>
-          </div>
-          <div class="step" id="step3">
-            <p><span style="color: rgb(55, 105, 198);">Mashantucket Pequot, Eastern Pequot,</span></p>
-          </div>
-          <div class="step" id="step4">
-            <p><span style="color: rgb(60, 139, 87);">Schaghticoke,</span></p>
-          </div>
-          <div class="step" id="step5">
-            <p><span style="color: rgb(101, 59, 141);">Golden Hill Paugussett,</span></p>
-          </div>
-          <div class="step" id="step6">
-            <p><span style="color: rgb(236, 55, 73);">Niantic,</span></p>
-          </div>
-          <div class="step" id="step7">
-            <p><span style="color: rgb(70, 219, 233);">Quinnipiac,</span></p>
-          </div>
-          <div class="step" id="step8">
-            <p>and other Algonquian-speaking peoples.</p>
-          </div>
-          <div class="step" id="step9">
-            <p>The land acknowledgment names nations most Yalies have never seen on a map.</p>
-          </div>
-          <div class="step" id="step10">
-            <p>This is the story of how those nations (and many more) converged on <span style="color: #63b7e6;">one house at 26 High Street.</span></p>
-          </div>
-        </div>
-      </section>
+  <!-- ═══════════════════════════════════════
+    HERO/TITLE CARD
+  ═══════════════════════════════════════ -->
+    <div class="hero">
+      <!-- PLACEHOLDER: Hero image of the NACC at 26 High St -->
+      <img class="hero__img" src="images/hero/nacc-hero.jpg">
+      <div class="hero__scrim"></div>
+      <div class="hero__text">
+        <h1 class="hero__headline">A Home of Many Nations.</h1>
+        <p class="hero__byline">By Banana</p>
+        <p class="hero__date">MAY 2026</p>
+      </div>
     </div>
 
-    <p>Yale was founded in 1701 on Quinnipiac land. For most of its history, it's relationships with Indigenous peoples were often shaped by extraction than exchange.</p>
-    
-    <section id="scrolly2">
-        <div class="sticky-thing">
-          <div id="zoomBox2">
-            <img id="scrollyPhoto2" class="photoDiv" src="images/Henry.jpg">
-          </div>        
+  <!-- ═══════════════════════════════════════
+    BEAT 1: LAND ACKNOWLEDGMENT SUBVERSION
+    (Vertical Scrollama — same as Unit 3 pattern)
+    CT territories map on right, text on left.
+  ═══════════════════════════════════════ -->
+    <section id="scrolly">
+      <div class="sticky-thing">
+        <div id="zoomBox">
+          <!-- PLACEHOLDER: Map of Connecticut with Indigenous nation territories colored/highlighted.
+               Shows Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke,
+               Golden Hill Paugussett, Niantic, Quinnipiac territories. -->
+          <img id="scrollyPhoto" class="photoDiv" src="images/beat1/ct-territories-full.png">
         </div>
-        <div class="scrolly-overlay">
-          <div class="step" id="step11">
-            <p>Despite this, in 1906, Henry Roe Cloud became one of the first known Native students at Yale.</p>
+      </div>
+      <div class="scrolly-overlay">
+        <div class="step" id="step1">
+          <p>"Yale University acknowledges that indigenous peoples and nations, including <span class="highlight nacc-blue">Mohegan</span>, <span class="highlight nacc-blue">Mashantucket Pequot</span>, <span class="highlight nacc-blue">Eastern Pequot</span>, <span class="highlight nacc-blue">Schaghticoke</span>, <span class="highlight nacc-blue">Golden Hill Paugussett</span>, <span class="highlight nacc-blue">Niantic</span>, and the <span class="highlight nacc-blue">Quinnipiac</span> and other Algonquian speaking peoples, have stewarded through generations the lands and waterways of what is now the state of Connecticut. We honor and respect the enduring relationship that exists between these peoples and nations and this land."</p>
+        </div>
+        <div class="step" id="step2">
+          <p>Read above is Yale University's land acknowledgment— the way you've heard it spoken aloud at the start of public events, ceremonies, or meetings on campus. Land acknowledgments are formal statements recognizing the Indigenous peoples who have stewarded a place, and the ongoing presence of those communities today. But the acknowledgment names nations most Yalies have never seen on a map.</p>
+        </div>
+        <div class="step" id="step3">
+          <p>This is the story of how those nations, and many, many more, converge on one house at 26 High Street.</p>
+        </div>
+      </div>
+    </section>
+
+  <!-- ═══════════════════════════════════════
+    TRANSITION: Yale context paragraph
+    (normal vertical prose before horizontal begins)
+  ═══════════════════════════════════════ -->
+    <div style="padding: 4%;">
+      <p>Yale was founded in 1701 on Quinnipiac land. From its earliest years, its relationships with Indigenous peoples was shaped more by extraction than exchange— through missionization, the near-total exclusion of Native students from its classrooms, and the accumulation of Native ancestral remains and sacred objects, where repatriation work is still ongoing.</p>
+    </div>
+
+  <!-- ═══════════════════════════════════════
+    BEATS 2 & 3: HORIZONTAL SCROLL
+    ═══════════════════════════════════════
+
+    HOW THIS WORKS:
+    ────────────────
+    This section gets "pinned" by GSAP ScrollTrigger.
+    When you scroll down into it, the page stops moving
+    vertically. Instead, the horizontal track slides
+    left, panel by panel. Each panel is 100vw wide.
+
+    The map image (#horizontal-map) fills the background
+    behind all the panels and gets its src swapped by JS
+    at each panel boundary — the same swap mechanic as
+    the vertical Scrollama sections, just triggered by
+    GSAP instead.
+
+    Text cards (.h-card) sit at the bottom-left of each
+    panel so the map dominates the frame.
+
+    When you scroll past the last panel, the pin releases
+    and you're back to normal vertical scrolling for Beat 4.
+  ═══════════════════════════════════════ -->
+    <section id="horizontal-section">
+      <!-- Background map — fills viewport, swapped by JS -->
+      <img id="horizontal-map" src="images/beat2/usa-map-empty.png">
+
+      <!-- Horizontal track — this slides left via GSAP translateX -->
+      <div id="horizontal-track">
+
+        <!-- ── BEAT 2: Origins ── -->
+
+        <!-- Panel 1: Henry Roe Cloud -->
+        <div class="h-panel" data-map="images/beat2/usa-map-hochunk.png">
+          <div class="h-card">
+            <p>In 1906, more than two hundred years after Yale's founding, Henry Roe Cloud (<span class="nacc-blue">Ho-Chunk</span>) became one of the first known Native students at Yale. For decades, students like him arrived alone.</p>
+            <!-- PLACEHOLDER: Portrait of Henry Roe Cloud -->
+            <img src="images/beat2/henry-roe-cloud.jpg">
           </div>
         </div>
-      </section>
 
+        <!-- Panel 2: Transition -->
+        <div class="h-panel" data-map="images/beat2/usa-map-hochunk.png">
+          <div class="h-card">
+            <p>Then slowly, a few more arrived:</p>
+          </div>
+        </div>
 
-    <!-- Mobile Warning Modal -->
+        <!-- Panel 3: Philip Deloria -->
+        <div class="h-panel" data-map="images/beat2/usa-map-deloria.png">
+          <div class="h-card">
+            <p>1960 — Philip S. (Sam) Deloria (<span class="nacc-blue">Standing Rock Sioux Tribe, Yankton Dakota</span>) arrives at Yale College, later returning for law school. He goes on to become a leading figure in Native American policy.</p>
+            <img src="images/beat2/philip-deloria.jpg">
+          </div>
+        </div>
+
+        <!-- Panel 4: Linc Kesler -->
+        <div class="h-panel" data-map="images/beat2/usa-map-kesler.png">
+          <div class="h-card">
+            <p>1967 — Linc Kesler (<span class="nacc-blue">Oglala Lakota from Pine Ridge, South Dakota</span>) enters Yale, graduating in 1971. He goes on to found the First Nations Studies Programs (now First Nations and Indigenous Studies) at the University of British Columbia.</p>
+            <img src="images/beat2/linc-kesler.jpg">
+          </div>
+        </div>
+
+        <!-- Panel 5: Allison Boucher Krebs -->
+        <div class="h-panel" data-map="images/beat2/usa-map-krebs.png">
+          <div class="h-card">
+            <p>1969 — Allison Boucher Krebs, also known as "Ally" and "Chi-Gaumee-Kwe," (<span class="nacc-blue">Sault Ste. Marie Tribe of Chippewa Indians in Michigan</span>) is admitted in the first class of women undergraduates at Yale. She becomes a lifelong advocate for Indigenous archives and youth.</p>
+            <img src="images/beat2/allison-krebs.jpg">
+          </div>
+        </div>
+
+        <!-- ── BEAT 3: Building community ── -->
+
+        <!-- Panel 6: Late 1960s context -->
+        <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
+          <div class="h-card">
+            <p>The late 1960s shook up American campuses. The Civil Rights movement, anti-war protests, and the rise of the Red Power movement— Alcatraz in 1969, Wounded Knee in 1973, all pushed universities to confront the narratives they taught and which students they served.</p>
+          </div>
+        </div>
+
+        <!-- Panel 7: Cultural centers at Yale -->
+        <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
+          <div class="h-card">
+            <p>At Yale, students of color began organizing for cultural centers of their own. The Afro-American Cultural Center, also known as The House, opened in 1969, with La Casa Cultural following in 1977, and the Asian American Cultural Center in 1981. For Native students, no such space existed yet.</p>
+            <!-- PLACEHOLDER: Small inset timeline graphic (Illustrator-made) showing
+                 The House (1969), La Casa (1977), AACC (1981), and a dot for the eventual NACC -->
+          </div>
+        </div>
+
+        <!-- Panel 8: 1980s-90s network forming -->
+        <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
+          <div class="h-card">
+            <p>But the community was still growing, and a network was forming. Through the 1980s and 90s, a generation of students, scholars, and staff worked on filling that institutional gap, one course, organization, and hire at a time.</p>
+          </div>
+        </div>
+
+        <!-- Panel 9: John Bathke / ANAAY -->
+        <div class="h-panel" data-map="images/beat3/map-timeline-bathke.png">
+          <div class="h-card">
+            <p>In 1989, John Bathke (Yale '93, <span class="nacc-blue">Diné</span>) founded the Association of Native Americans at Yale (ANAAY), the first formal Native student organization on campus, today known as Native and Indigenous Student Association at Yale (NISAY). Four years later, Dean Shannon Salinas granted ANAAY a single room inside the Chicano Cultural House (today merged into La Casa Cultural), affectionately referred to as the "Native American Cultural Center."</p>
+            <img src="images/beat3/john-bathke.jpg">
+          </div>
+        </div>
+
+        <!-- Panel 10: Jace Weaver & Rick Chavolla -->
+        <div class="h-panel" data-map="images/beat3/map-timeline-weaver-chavolla.png">
+          <div class="h-card">
+            <p>Not long after, Jace Weaver (<span class="nacc-blue">Cherokee</span>) joined the faculty as Yale's first Native scholar in 1996. Rick Chavolla (<span class="nacc-blue">Kumeyaay/Chicano</span>) followed in 1997.</p>
+            <img src="images/beat3/weaver-chavolla.jpg">
+          </div>
+        </div>
+
+        <!-- Panel 11: Advocacy & NACC sign -->
+        <div class="h-panel" data-map="images/beat3/map-timeline-advocacy.png">
+          <div class="h-card">
+            <p>Students kept advocating. Demonstrations, op-eds, sit-ins and meetings with administrators emphasized the importance of cultural centers, and demands for a permanent NACC space on campus and institutional recognition. In 1999, after the NACC moved to the third floor of the Asian American Cultural Center and gained access to four more rooms, a sign for the NACC went up outside of the AACC, officially recognizing the space by Yale administration, with Chavolla assuming role as first director of the NACC. But the NACC still had no building center of its own.</p>
+            <img src="images/beat3/ydn-clippings.jpg">
+          </div>
+        </div>
+
+        <!-- Panel 12: Mt. Pleasant, Lowe, Blackhawk -->
+        <div class="h-panel" data-map="images/beat3/map-timeline-2000s.png">
+          <div class="h-card">
+            <p>The following decade became about taking up and holding space. Alyssa Mt. Pleasant (<span class="nacc-blue">Tuscarora</span>) became the first Native faculty member dedicated to Native American Studies in 2006. Shelly Lowe (<span class="nacc-blue">Diné</span>) became the NACC's first sole director in 2007. And in 2009, Ned Blackhawk (<span class="nacc-blue">Western Shoshone</span>) arrived as the first Native faculty member granted tenure at Yale.</p>
+            <img src="images/beat3/mt-pleasant-lowe-blackhawk.jpg">
+          </div>
+        </div>
+
+      </div><!-- end #horizontal-track -->
+    </section><!-- end #horizontal-section -->
+
+  <!-- ═══════════════════════════════════════
+    BEAT 4: THE HOUSE — NACC at 26 High St.
+    (Back to vertical Scrollama)
+  ═══════════════════════════════════════ -->
+    <div style="padding: 4%;">
+      <p>Finally, in 2013, two years after the announcement of a creation of the space, the Native American Cultural Center opened its doors at 26 High Street.</p>
+    </div>
+
+    <!-- PLACEHOLDER: Archival photo of the NACC opening ceremony -->
+    <img src="images/beat4/nacc-opening-2013.jpg" style="max-width: 700px; margin: 0 auto 2rem; display: block;">
+
+    <section id="scrolly4">
+      <div class="sticky-thing">
+        <div id="zoomBox4">
+          <!-- PLACEHOLDER: Continental/Pacific-scale map, heavily populated with dots -->
+          <img id="scrollyPhoto4" class="photoDiv" src="images/beat4/map-growing.png">
+        </div>
+      </div>
+      <div class="scrolly-overlay">
+        <div class="step" id="step14">
+          <p>And continued to grow. Through the 2010s, a succession of Native deans and assistant directors reshaped what the space meant and could hold. In 2016, Kapi'olani Laronal (<span class="nacc-blue">Kanaka Maoli, Haida/Tsimsian tribes of Alaska</span>) became the first assistant director to the space, bringing Native Hawaiian and Pacific Islander community formally into the center.</p>
+        </div>
+        <div class="step" id="step15">
+          <p>Many nations, one house.</p>
+        </div>
+        <div class="step" id="step16" style="margin-bottom: 10rem;">
+          <!-- VISUAL: Map resolves to wall of nations flags -->
+          <p></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLACEHOLDER: Wall of nations flags photo, full-width -->
+    <img src="images/beat4/wall-of-nations.jpg" style="max-width: 900px; margin: 0 auto 2rem; display: block;">
+
+  <!-- ═══════════════════════════════════════
+    BEAT 5: CODA
+  ═══════════════════════════════════════ -->
+    <div style="padding: 4%;">
+      <p>And the story of 26 High Street is still being written. With each new class, the space is left changed.</p>
+    </div>
+
+    <!-- PLACEHOLDER: Recent milestones timeline (Illustrator-made, seen not narrated) -->
+    <img src="images/beat5/recent-milestones-timeline.png" style="max-width: 800px; margin: 0 auto 4rem; display: block;">
+
+    <!-- PLACEHOLDER: Gallery of archival NACC photos -->
+    <img src="images/beat5/nacc-gallery.jpg" style="max-width: 800px; margin: 0 auto 4rem; display: block;">
+
+  <!-- ═══════════════════════════════════════
+    HERO STATEMENT: "One house."
+  ═══════════════════════════════════════ -->
+    <div class="hero-statement">
+      <h2>One house.</h2>
+    </div>
+
+    <!-- PLACEHOLDER: NACC house today -->
+    <img src="images/beat5/nacc-today.jpg" style="max-width: 900px; margin: 4rem auto; display: block;">
+
+  <!-- ═══════════════════════════════════════
+    CREDITS
+  ═══════════════════════════════════════ -->
+    <div class="hero">
+      <img class="hero__img" src="images/hero/nacc-hero.jpg">
+      <div class="hero__scrim" style="background: rgba(0, 0, 0, 0.6);"></div>
+      <div class="hero__text" style="justify-content: flex-end; padding-bottom: 4rem;">
+        <h1 class="hero__headline" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Special Thanks</h1>
+        <p class="hero__subhead" style="font-size: 0.95rem; max-width: 40rem; text-align: left; line-height: 1.8;">
+          This project would not exist without Mara Gutierrez— her assistance over text, and her stunning, deeply researched thesis on the NACC and Indigenous presence at Yale made much of this story possible. The depth of her archival work was astounding, and her presence at Yale, the NACC, and my life has been nothing but warm.
+          <br><br>To Joshua Ching, for consulting on this project and being an always steady source of inspiration during my time here.
+          <br><br>To Zitlali Garcia Mondragon, who helped begin to imagine a visual telling of this story alongside Mara, Josh, and me last year!
+          <br><br>To the Native American Cultural Center at 26 High St. and the people who make it what it is— especially Dean M and AD Denise Morales!
+          <br><br>To Professor Aaron Reiss for his continued support and guidance that carried this project!
+          <br><br>And to the kūpuna, ancestors, and elders— every person who has paved the way at this institution and carried this work forward so that I could stand here now! Mahalo.
+        </p>
+      </div>
+    </div>
+
+  <!-- ═══════════════════════════════════════
+    MOBILE WARNING MODAL
+  ═══════════════════════════════════════ -->
     <div id="deviceModal" class="modal">
       <div class="modal-content">
         <span>
-          Wow! One of your friends must be in Aaron Reiss's "Telling Stories With Maps" class — how cool! <br><br> Sadly, this site is meant to be viewed on a computer, so if you are on a phone or tablet then it's gonna look all kinds of wonky and you might get the wrong impression about how amazing this work is.
+          This site is meant to be viewed on a computer. If you are on a phone or tablet, it may not display as intended.
         </span>
         <button id="continueBtn">Continue Anyway</button>
       </div>
     </div>
 
+
+<!-- ═══════════════════════════════════════
+   SCRIPT 1: VERTICAL SCROLLAMA IMAGE SWAPS
+   (Beats 1 & 4 only — same pattern as Unit 3)
+   ═══════════════════════════════════════ -->
 <script>
 
-/* Scrollytelling code goes under here */
+  // ── BEAT 1: Land Acknowledgment / CT Territories Map ──
 
-  // Code for the Photo Div #1 (aka #scrollyPhoto1)
-    
-    // Entering Step One
-    d3.select("#step1").on('stepin',function(e) {
-    console.log("We've arrived at STEP ONE in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct1.jpg");
+  d3.select("#step1").on('stepin', function(e) {
+    console.log("STEP 1: Land acknowledgment with CT territories map");
+    d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-full.png");
   })
-    // Entering Step Two
-    d3.select("#step2").on('stepin',function(e) {
-    console.log("We've arrived at STEP TWO in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct2.jpg");
+
+  d3.select("#step2").on('stepin', function(e) {
+    console.log("STEP 2: Land acknowledgment context");
+    d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-full.png");
   })
-    // Entering Step Three
-    d3.select("#step3").on('stepin',function(e) {
-    console.log("We've arrived at STEP Three in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct3.jpg");
+
+  d3.select("#step3").on('stepin', function(e) {
+    console.log("STEP 3: 26 High St dot appears on CT map");
+    d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-with-dot.png");
   })
-    // Entering Step Four
-    d3.select("#step4").on('stepin',function(e) {
-    console.log("We've arrived at STEP Four in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct4.jpg");
+
+  // ── BEAT 4: The House — 26 High St ──
+
+  d3.select("#step14").on('stepin', function(e) {
+    console.log("STEP 14: Kapi'olani Laronal — map extends to Pacific");
+    d3.select("#scrollyPhoto4").attr("src", "images/beat4/map-pacific-laronal.png");
   })
-    // Entering Step Five
-    d3.select("#step5").on('stepin',function(e) {
-    console.log("We've arrived at STEP Fix in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct5.jpg");
+
+  d3.select("#step15").on('stepin', function(e) {
+    console.log("STEP 15: ALL dots populate — 'Many nations, one house'");
+    d3.select("#scrollyPhoto4").attr("src", "images/beat4/map-all-nations.png");
   })
-    // Entering Step Six
-    d3.select("#step6").on('stepin',function(e) {
-    console.log("We've arrived at STEP Six in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct6.jpg");
-  })
-    // Entering Step Seven
-    d3.select("#step7").on('stepin',function(e) {
-    console.log("We've arrived at STEP Seven in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct7.jpg");
-  })
-    // Entering Step Eight
-    d3.select("#step8").on('stepin',function(e) {
-    console.log("We've arrived at STEP Eight in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct8.jpg");
-  })
-    // Entering Step Nine
-    d3.select("#step9").on('stepin',function(e) {
-    console.log("We've arrived at STEP Nine in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct9.jpg");
-    // d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(11%, -15%)");
-  })
-    // Entering Step Ten
-     d3.select("#step10").on('stepin',function(e) {
-    console.log("We've arrived at STEP Ten in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/ct10.jpg");
-    d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(11%, -15%)");
+
+  d3.select("#step16").on('stepin', function(e) {
+    console.log("STEP 16: Map resolves to wall of nations flags");
+    d3.select("#scrollyPhoto4").attr("src", "images/beat4/wall-of-nations.jpg");
   })
 
 </script>
 
-<!-- LEAVE ALONE, scrolly code goes in the section below -->
+<!-- ═══════════════════════════════════════
+   SCRIPT 2: SCROLLAMA INITIALIZATION
+   (only handles vertical sections now)
+   ═══════════════════════════════════════ -->
 <script>
     const scroller = scrollama();
 
-	scroller
-		.setup({
-			step: "#scrolly .scrolly-overlay .step",
-			offset: 0.5,
-			debug: false
-		})
-		.onStepEnter(function({ element, index, direction}) {
-			const event = new CustomEvent('stepin', { detail: { direction: direction } })
-			element.dispatchEvent(event);
-		})
-		.onStepExit(function({ element, index, direction }) {
-			const event = new CustomEvent('stepout', { detail: { direction: direction } })
-			element.dispatchEvent(event);
-		});
-
-	window.addEventListener("resize", scroller.resize);
-    </script>
-
-<!-- Left-Side Photo Scroller! by Me -->
-<script>
-    const scroller2 = scrollama();
-
-    scroller2
-    .setup({
-        step: "#scrolly2 .scrolly-overlay .step",
+    scroller
+      .setup({
+        step: "#scrolly .scrolly-overlay .step, #scrolly4 .scrolly-overlay .step",
         offset: 0.5,
         debug: false
-    })
-    .onStepEnter(function({ element, index, direction }) {
-        const event = new CustomEvent('stepin', { detail: { direction: direction } });
+      })
+      .onStepEnter(function({ element, index, direction }) {
+        const event = new CustomEvent('stepin', { detail: { direction: direction } })
         element.dispatchEvent(event);
-    })
-    .onStepExit(function({ element, index, direction }) {
-        const event = new CustomEvent('stepout', { detail: { direction: direction } });
+      })
+      .onStepExit(function({ element, index, direction }) {
+        const event = new CustomEvent('stepout', { detail: { direction: direction } })
         element.dispatchEvent(event);
-    });
+      });
 
-window.addEventListener("resize", scroller2.resize);
+    window.addEventListener("resize", scroller.resize);
 </script>
 
+<!-- ═══════════════════════════════════════
+   SCRIPT 3: GSAP HORIZONTAL SCROLL
+   (Beats 2 & 3)
 
-<!-- mobile phone warning modal -->
+   HOW THIS WORKS:
+   ────────────────
+   1. We grab all the .h-panel elements inside
+      #horizontal-track. There are 12 panels,
+      each 100vw wide.
+
+   2. GSAP ScrollTrigger "pins" #horizontal-section
+      to the viewport. While pinned, your normal
+      vertical scroll gets converted into horizontal
+      movement — GSAP applies a translateX to
+      #horizontal-track, sliding it left.
+
+   3. Each panel has a data-map attribute that says
+      which map image to show when that panel is
+      in view. We use ScrollTrigger's onUpdate to
+      figure out which panel is currently centered,
+      and swap #horizontal-map's src accordingly.
+      This is the same swap mechanic as the vertical
+      Scrollama sections — just triggered differently.
+
+   4. When you scroll past the last panel, the pin
+      releases and you continue scrolling vertically
+      into Beat 4.
+   ═══════════════════════════════════════ -->
+<script>
+  // Wait for everything to load before initializing GSAP
+  window.addEventListener("load", function () {
+
+    // Register the ScrollTrigger plugin with GSAP
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Grab references to the elements we need
+    const horizontalSection = document.querySelector("#horizontal-section");
+    const horizontalTrack = document.querySelector("#horizontal-track");
+    const panels = document.querySelectorAll(".h-panel");
+    const mapImg = document.querySelector("#horizontal-map");
+
+    // Calculate how far the track needs to slide.
+    // Total width of all panels minus one viewport width
+    // (because the first panel is already visible).
+    const totalScroll = horizontalTrack.scrollWidth - window.innerWidth;
+
+    // Track which map image is currently showing,
+    // so we don't swap the src on every scroll tick
+    let currentMapSrc = "";
+
+    // Create the main horizontal scroll animation
+    gsap.to(horizontalTrack, {
+      // Slide the track left by the total scroll distance
+      x: -totalScroll,
+
+      // ease: "none" means the scroll feels linear —
+      // 1px of vertical scroll = 1px of horizontal movement.
+      // This is what makes it feel natural.
+      ease: "none",
+
+      scrollTrigger: {
+        // The element that triggers and gets pinned
+        trigger: horizontalSection,
+
+        // "pin" locks #horizontal-section to the viewport
+        // while the animation plays
+        pin: true,
+
+        // "scrub: true" ties the animation progress directly
+        // to scroll position — you're scrubbing through it
+        // like a video timeline, not playing it on a timer
+        scrub: true,
+
+        // start: when the top of #horizontal-section
+        // hits the top of the viewport
+        start: "top top",
+
+        // end: how much vertical scroll distance controls
+        // the full horizontal animation. "+=" means
+        // "add this many pixels of scroll runway."
+        // We use totalScroll so 1:1 scroll-to-slide ratio.
+        end: "+=" + totalScroll,
+
+        // onUpdate fires on every scroll tick while pinned.
+        // We use it to figure out which panel is in view
+        // and swap the background map image.
+        onUpdate: function (self) {
+          // self.progress goes from 0 to 1 across
+          // the full horizontal scroll
+          var progress = self.progress;
+
+          // Figure out which panel index we're on.
+          // progress * (panels.length - 1) gives us
+          // a float; Math.round snaps to nearest panel.
+          var panelIndex = Math.round(progress * (panels.length - 1));
+
+          // Clamp to valid range just in case
+          if (panelIndex < 0) panelIndex = 0;
+          if (panelIndex >= panels.length) panelIndex = panels.length - 1;
+
+          // Read the data-map attribute from the current panel
+          var newSrc = panels[panelIndex].getAttribute("data-map");
+
+          // Only swap the image if it's different from current
+          // (avoids flickering from constant src reassignment)
+          if (newSrc && newSrc !== currentMapSrc) {
+            mapImg.src = newSrc;
+            currentMapSrc = newSrc;
+            console.log("Horizontal map swap → panel " + panelIndex + ": " + newSrc);
+          }
+        }
+      }
+    });
+
+  });
+</script>
+
+<!-- ═══════════════════════════════════════
+   SCRIPT 4: MOBILE WARNING MODAL
+   ═══════════════════════════════════════ -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const isSmallScreen = window.innerWidth <= 900;
