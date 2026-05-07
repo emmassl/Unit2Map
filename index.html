@@ -514,8 +514,45 @@
     CT territories map on right, text on left.
   ═══════════════════════════════════════ -->
     <div style="padding: 4%; margin-bottom: 20%; margin-top: 20%;">
-      <p class="transcript">"Yale University acknowledges that indigenous peoples and nations, including <span class="highlight nacc-blue">Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke</span>, <span class="highlight nacc-blue">Golden Hill Paugussett</span>, <span class="highlight nacc-blue">Niantic</span>, and the <span class="highlight nacc-blue">Quinnipiac</span> and other Algonquian speaking peoples, have stewarded through generations the lands and waterways of what is now the state of Connecticut. We honor and respect the enduring relationship that exists between these peoples and nations and this land."</p>
+      <p class="transcript">"Yale University acknowledges that indigenous peoples and nations, including</p>
+        <!-- Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke, Golden Hill Paugussett, Niantic, and the Quinnipiac and other Algonquian speaking peoples,  -->
     </div>
+    <section id="scrolly">
+      <div class="sticky-thing">
+        <div id="zoomBox">
+<!-- Sticky Thing 1 goes below this line -->
+          <img id="scrollyPhoto" class="photoDiv" src="images/ct1.jpg">
+<!-- Sticky Thing 1 goes above this line -->
+        </div>        
+      </div>
+      <div class="scrolly-overlay">
+        <div class="step" id="step1">
+          <p><span style="color: rgb(232, 210, 42);">Mohegan,</span></p>
+        </div>
+        <div class="step" id="step2">
+          <p><span style="color: rgb(167, 87, 98);">Mohican,</span></p>
+        </div>
+        <div class="step" id="step3">
+          <p><span style="color: rgb(55, 105, 198);">Mashantucket Pequot, Eastern Pequot,</span></p>
+        </div>
+        <div class="step" id="step4">
+          <p><span style="color: rgb(60, 139, 87);">Schaghticoke,</span></p>
+        </div>
+        <div class="step" id="step5">
+          <p><span style="color: rgb(101, 59, 141);">Golden Hill Paugussett,</span></p>
+        </div>
+        <div class="step" id="step6">
+          <p><span style="color: rgb(236, 55, 73);">Niantic,</span></p>
+        </div>
+        <div class="step" id="step7">
+          <p><span style="color: rgb(70, 219, 233);">Quinnipiac,</span></p>
+        </div>
+        <div class="step" id="step8">
+          <p><span style="color: rgb(41, 41, 41);">and other Algonquian speaking peoples, </span></p>
+        </div>
+    </section>
+    <p class="transcript" style="padding-left: 5%; padding-right: 2%;"> have stewarded through generations the lands and waterways of what is now the state of Connecticut. We honor and respect the enduring relationship that exists between these peoples and nations and this land."</p>
+  </div>
           <!-- PLACEHOLDER: Map of Connecticut with Indigenous nation territories colored/highlighted.
                Shows Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke,
                Golden Hill Paugussett, Niantic, Quinnipiac territories. -->
@@ -774,20 +811,73 @@
 
   // ── BEAT 1: Land Acknowledgment / CT Territories Map ──
 
-  d3.select("#step1").on('stepin', function(e) {
-    console.log("STEP 1: Land acknowledgment with CT territories map");
-    d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-full.png");
+      // Entering Step One
+      d3.select("#step1").on('stepin',function(e) {
+    console.log("We've arrived at STEP ONE in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct2.jpg");
   })
+    // Entering Step Two
+    d3.select("#step2").on('stepin',function(e) {
+    console.log("We've arrived at STEP TWO in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct3.jpg");
+  })
+    // Entering Step Three
+    d3.select("#step3").on('stepin',function(e) {
+    console.log("We've arrived at STEP Three in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct4.jpg");
+  })
+    // Entering Step Four
+    d3.select("#step4").on('stepin',function(e) {
+    console.log("We've arrived at STEP Four in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct5.jpg");
+  })
+    // Entering Step Five
+    d3.select("#step5").on('stepin',function(e) {
+    console.log("We've arrived at STEP Fix in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct6.jpg");
+  })
+    // Entering Step Six
+    d3.select("#step6").on('stepin',function(e) {
+    console.log("We've arrived at STEP Six in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct7.jpg");
+  })
+    // Entering Step Seven
+    d3.select("#step7").on('stepin',function(e) {
+    console.log("We've arrived at STEP Seven in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct8.jpg");
+  })
+    // Entering Step Eight
+    d3.select("#step8").on('stepin',function(e) {
+    console.log("We've arrived at STEP Eight in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct9.jpg");
+  })
+    // Entering Step Nine
+    d3.select("#step9").on('stepin',function(e) {
+    console.log("We've arrived at STEP Nine in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct9.jpg");
+    // d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(11%, -15%)");
+  })
+  //   // Entering Step Ten
+  //    d3.select("#step10").on('stepin',function(e) {
+  //   console.log("We've arrived at STEP Ten in the photo div")
+  //   d3.select("#scrollyPhoto").attr("src", "images/ct10.jpg");
+  //   d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(11%, -15%)");
+  // })
 
-  d3.select("#step2").on('stepin', function(e) {
-    console.log("STEP 2: Land acknowledgment context");
-    d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-full.png");
-  })
+  // d3.select("#step1").on('stepin', function(e) {
+  //   console.log("STEP 1: Land acknowledgment with CT territories map");
+  //   d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-full.png");
+  // })
 
-  d3.select("#step3").on('stepin', function(e) {
-    console.log("STEP 3: 26 High St dot appears on CT map");
-    d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-with-dot.png");
-  })
+  // d3.select("#step2").on('stepin', function(e) {
+  //   console.log("STEP 2: Land acknowledgment context");
+  //   d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-full.png");
+  // })
+
+  // d3.select("#step3").on('stepin', function(e) {
+  //   console.log("STEP 3: 26 High St dot appears on CT map");
+  //   d3.select("#scrollyPhoto").attr("src", "images/beat1/ct-territories-with-dot.png");
+  // })
 
   // ── BEAT 4: The House — 26 High St ──
 
