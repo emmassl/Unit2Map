@@ -37,7 +37,7 @@
       }
 
       /* ─────────────────────────────────────────
-        BASE / GLOBALS
+        BASE
       ───────────────────────────────────────── */
       body {
         margin: 0;
@@ -484,9 +484,26 @@
           flex-grow: 2;
         }
 
-        #scrolly .scrolly-overlay .step:last-child,
+        /* #scrolly .scrolly-overlay .step:last-child,
         #scrolly4 .scrolly-overlay .step:last-child {
           padding-bottom: 40vh;
+        } */
+      }
+      /* ─────────────────────────────────────────
+      NON-SCROLLY ZOOM for IMG
+      ───────────────────────────────────────── */
+      .zoom-in {
+        animation: zoomIn 2s ease-out forwards;
+      }
+
+      @keyframes zoomIn {
+        from {
+          transform: scale(0.85);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
         }
       }
     </style>
@@ -507,22 +524,21 @@
   ═══════════════════════════════════════ -->
     <div class="hero">
       <!-- PLACEHOLDER: Hero image of the NACC at 26 High St -->
-      <img class="hero__img" src="images/hero/nacc-hero.jpg">
+      <img class="hero__img" src="images/NACC.jpg">
       <div class="hero__scrim"></div>
       <div class="hero__text">
-        <h1 class="hero__headline">A Home of Many Nations.</h1>
+        <h1 class="hero__headline">A Home of Many Nations</h1>
         <p class="hero__byline" style="font-family: Lexend, serif;">By Emma Slagle</p> 
         <!-- HELP ABove! -->
         <p class="hero__date">MAY 2026</p>
       </div>
     </div>
-
   <!-- ═══════════════════════════════════════
     BEAT 1: LAND ACKNOWLEDGMENT SUBVERSION
     (Vertical Scrollama — same as Unit 3 pattern)
     CT territories map on right, text on left.
   ═══════════════════════════════════════ -->
-    <div style="padding: 4%; margin-bottom: 20%; margin-top: 20%;">
+    <div style="padding: 4%; margin-bottom: 14%; margin-top: 22%;">
       <p class="transcript">"Yale University acknowledges that indigenous peoples and nations, including</p>
         <!-- Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke, Golden Hill Paugussett, Niantic, and the Quinnipiac and other Algonquian speaking peoples,  -->
     </div>
@@ -557,28 +573,20 @@
           <p><span style="color: rgb(70, 219, 233);">Quinnipiac,</span></p>
         </div>
         <div class="step" id="step8">
-          <p><span style="color: rgb(41, 41, 41);">and other Algonquian speaking peoples, </span></p>
+          <p><span style="color: rgb(41, 41, 41);">and other Algonquian speaking peoples,</span></p>
         </div>
     </section>
-    <p class="transcript" style="padding-left: 5%; padding-right: 2%;"> have stewarded through generations the lands and waterways of what is now the state of Connecticut. We honor and respect the enduring relationship that exists between these peoples and nations and this land."</p>
+    <p class="transcript" style="padding-left: 5%; padding-right: 2%; margin-top: 19%; margin-bottom: 20%"> have stewarded through generations the lands and waterways of what is now the state of Connecticut. We honor and respect the enduring relationship that exists between these peoples and nations and this land."</p>
   </div>
-          <!-- PLACEHOLDER: Map of Connecticut with Indigenous nation territories colored/highlighted.
-               Shows Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke,
-               Golden Hill Paugussett, Niantic, Quinnipiac territories. -->
-          <!-- <img id="scrollyPhoto" class="photoDiv" src="images/beat1/ct-territories-full.png"> -->
-      <!-- <section id="scrolly">
-        <div class="sticky-thing">
-          <div id="zoomBox"> -->
-        <div style="padding: 4%;">
-          <p>Read above is Yale University's land acknowledgment— the way you've heard it spoken aloud at the start of public events, ceremonies, or meetings on campus. Land acknowledgments are formal statements recognizing the Indigenous peoples who have stewarded a place, and the ongoing presence of those communities today. But the acknowledgment names nations most Yalies have never seen on a map.</p>
-          <p>This is the story of how those nations, and many, many more, converge on one house at 26 High Street.</p>
-        </div>
-        <div id="zoomBox">
-          <img id="scrollyPhoto" class="photoDiv" src="images/beat1/ct-territories-full.png">
-        </div>
-          <!-- </div>
-      </div>
-    </section> -->
+  <div style="padding: 4%; margin-top: 5%;">
+    <p>Read above is Yale University's land acknowledgment— the way you've heard it spoken aloud at the start of public events, ceremonies, or meetings on campus.
+      Land acknowledgments are formal statements recognizing the Indigenous peoples who have long stewarded a place, and whose presence endures today. Yet the acknowledgment names nations most Yalies have never seen on a map.</p>
+    <p>This is the story of how those nations, and many, many more, converge on one house at <span style="color: #63b8e7;">26 High Street.</span></p>
+  </div>
+  <div id="ctMapFrame" style="padding: 4%; overflow: hidden; max-width: 40vw; display: block; margin: 0 auto;">
+      <img id="ctMap" class="photoDiv" src="images/ct10.jpg"
+          style="transform: scale(1.3); transition: transform 3s ease;">
+  </div>
 
   <!-- ═══════════════════════════════════════
     TRANSITION: Yale context paragraph
@@ -589,7 +597,7 @@
     </div>
 
   <!-- ═══════════════════════════════════════
-    BEATS 2 & 3: HORIZONTAL SCROLL
+    BEATS 2, 3, 4: HORIZONTAL SCROLL
     ═══════════════════════════════════════
 
     HOW THIS WORKS:
@@ -625,26 +633,20 @@
           <div class="h-card">
             <p>In 1906, more than two hundred years after Yale's founding, Henry Roe Cloud (<span class="nacc-blue">Ho-Chunk</span>) became one of the first known Native students at Yale. For decades, students like him arrived alone.</p>
             <!-- PLACEHOLDER: Portrait of Henry Roe Cloud -->
-            <img src="images/beat2/henry-roe-cloud.jpg">
+            <img src="images/henry.jpg">
           </div>
         </div>
 
-        <!-- Panel 2: Transition -->
-        <div class="h-panel" data-map="images/beat2/usa-map-hochunk.png">
-          <div class="h-card">
-            <p>Then slowly, a few more arrived:</p>
-          </div>
-        </div>
-
-        <!-- Panel 3: Philip Deloria -->
+        <!-- Panel 2: Transition & Philip Deloria -->
         <div class="h-panel" data-map="images/beat2/usa-map-deloria.png">
           <div class="h-card">
+            <p>Then slowly, a few more arrived:</p>
             <p>1960 — Philip S. (Sam) Deloria (<span class="nacc-blue">Standing Rock Sioux Tribe, Yankton Dakota</span>) arrives at Yale College, later returning for law school. He goes on to become a leading figure in Native American policy.</p>
             <img src="images/beat2/philip-deloria.jpg">
           </div>
         </div>
 
-        <!-- Panel 4: Linc Kesler -->
+        <!-- Panel 3: Linc Kesler -->
         <div class="h-panel" data-map="images/beat2/usa-map-kesler.png">
           <div class="h-card">
             <p>1967 — Linc Kesler (<span class="nacc-blue">Oglala Lakota from Pine Ridge, South Dakota</span>) enters Yale, graduating in 1971. He goes on to found the First Nations Studies Programs (now First Nations and Indigenous Studies) at the University of British Columbia.</p>
@@ -652,7 +654,7 @@
           </div>
         </div>
 
-        <!-- Panel 5: Allison Boucher Krebs -->
+        <!-- Panel 4: Allison Boucher Krebs -->
         <div class="h-panel" data-map="images/beat2/usa-map-krebs.png">
           <div class="h-card">
             <p>1969 — Allison Boucher Krebs, also known as "Ally" and "Chi-Gaumee-Kwe," (<span class="nacc-blue">Sault Ste. Marie Tribe of Chippewa Indians in Michigan</span>) is admitted in the first class of women undergraduates at Yale. She becomes a lifelong advocate for Indigenous archives and youth.</p>
@@ -662,14 +664,14 @@
 
         <!-- ── BEAT 3: Building community ── -->
 
-        <!-- Panel 6: Late 1960s context -->
+        <!-- Panel 5: Late 1960s context -->
         <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
           <div class="h-card">
             <p>The late 1960s shook up American campuses. The Civil Rights movement, anti-war protests, and the rise of the Red Power movement— Alcatraz in 1969, Wounded Knee in 1973, all pushed universities to confront the narratives they taught and which students they served.</p>
           </div>
         </div>
 
-        <!-- Panel 7: Cultural centers at Yale -->
+        <!-- Panel 6: Cultural centers at Yale -->
         <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
           <div class="h-card">
             <p>At Yale, students of color began organizing for cultural centers of their own. The Afro-American Cultural Center, also known as The House, opened in 1969, with La Casa Cultural following in 1977, and the Asian American Cultural Center in 1981. For Native students, no such space existed yet.</p>
@@ -678,14 +680,14 @@
           </div>
         </div>
 
-        <!-- Panel 8: 1980s-90s network forming -->
+        <!-- Panel 7: 1980s-90s network forming -->
         <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
           <div class="h-card">
             <p>But the community was still growing, and a network was forming. Through the 1980s and 90s, a generation of students, scholars, and staff worked on filling that institutional gap, one course, organization, and hire at a time.</p>
           </div>
         </div>
 
-        <!-- Panel 9: John Bathke / ANAAY -->
+        <!-- Panel 8: John Bathke / ANAAY -->
         <div class="h-panel" data-map="images/beat3/map-timeline-bathke.png">
           <div class="h-card">
             <p>In 1989, John Bathke (Yale '93, <span class="nacc-blue">Diné</span>) founded the Association of Native Americans at Yale (ANAAY), the first formal Native student organization on campus, today known as Native and Indigenous Student Association at Yale (NISAY). Four years later, Dean Shannon Salinas granted ANAAY a single room inside the Chicano Cultural House (today merged into La Casa Cultural), affectionately referred to as the "Native American Cultural Center."</p>
@@ -693,7 +695,7 @@
           </div>
         </div>
 
-        <!-- Panel 10: Jace Weaver & Rick Chavolla -->
+        <!-- Panel 9: Jace Weaver & Rick Chavolla -->
         <div class="h-panel" data-map="images/beat3/map-timeline-weaver-chavolla.png">
           <div class="h-card">
             <p>Not long after, Jace Weaver (<span class="nacc-blue">Cherokee</span>) joined the faculty as Yale's first Native scholar in 1996. Rick Chavolla (<span class="nacc-blue">Kumeyaay/Chicano</span>) followed in 1997.</p>
@@ -701,7 +703,7 @@
           </div>
         </div>
 
-        <!-- Panel 11: Advocacy & NACC sign -->
+        <!-- Panel 10: Advocacy & NACC sign -->
         <div class="h-panel" data-map="images/beat3/map-timeline-advocacy.png">
           <div class="h-card">
             <p>Students kept advocating. Demonstrations, op-eds, sit-ins and meetings with administrators emphasized the importance of cultural centers, and demands for a permanent NACC space on campus and institutional recognition. In 1999, after the NACC moved to the third floor of the Asian American Cultural Center and gained access to four more rooms, a sign for the NACC went up outside of the AACC, officially recognizing the space by Yale administration, with Chavolla assuming role as first director of the NACC. But the NACC still had no building center of its own.</p>
@@ -709,7 +711,7 @@
           </div>
         </div>
 
-        <!-- Panel 12: Mt. Pleasant, Lowe, Blackhawk -->
+        <!-- Panel 11: Mt. Pleasant, Lowe, Blackhawk -->
         <div class="h-panel" data-map="images/beat3/map-timeline-2000s.png">
           <div class="h-card">
             <p>The following decade became about taking up and holding space. Alyssa Mt. Pleasant (<span class="nacc-blue">Tuscarora</span>) became the first Native faculty member dedicated to Native American Studies in 2006. Shelly Lowe (<span class="nacc-blue">Diné</span>) became the NACC's first sole director in 2007. And in 2009, Ned Blackhawk (<span class="nacc-blue">Western Shoshone</span>) arrived as the first Native faculty member granted tenure at Yale.</p>
@@ -717,56 +719,37 @@
           </div>
         </div>
 
+        <!-- Panel 12: The House -->
+        <div class="h-panel" data-map="images/beat4/idk.png">
+          <div class="h-card">
+            <p>Finally, in 2013, two years after the announcement of a creation of the space, the Native American Cultural Center opened its doors at 26 High Street.</p>
+            <img src="images/beat4/nacc-opening-2013.jpg" style="max-width: 700px; margin: 0 auto 2rem; display: block;">
+          </div>
+        </div>
+
+        <!-- Panel 13: Pasifika Introduction -->
+        <div class="h-panel" data-map="images/beat4/idk.png">
+          <div class="h-card">
+            <p>And continued to grow. Through the 2010s, a succession of Native deans and assistant directors reshaped what the space meant and could hold. In 2016, Kapi'olani Laronal (<span class="nacc-blue">Kanaka Maoli, Haida/Tsimshian tribes of Alaska</span>) became the first assistant director to the space, bringing Native Hawaiian and Pacific Islander community formally into the center.</p>
+            <img src="images/beat3/mt-pleasant-lowe-blackhawk.jpg">
+          </div>
+        </div>
+
+        <!-- Panel 14: Dots populating for all the flags -->
+        <div class="h-panel" data-map="images/beat4/idk.png">
+          <div class="h-card">
+            <p>And the story of 26 High Street is still being written. With each new class, the space is left changed.</p>
+            <img src="images/beat3/mt-pleasant-lowe-blackhawk.jpg">
+          </div>
+        </div>
+
+        <!-- VISUAL: Map resolves to wall of nations flags -->
+
       </div><!-- end #horizontal-track -->
     </section><!-- end #horizontal-section -->
 
-  <!-- ═══════════════════════════════════════
-    BEAT 4: THE HOUSE — NACC at 26 High St.
-    (Back to vertical Scrollama)
-  ═══════════════════════════════════════ -->
-    <div style="padding: 4%;">
-      <p>Finally, in 2013, two years after the announcement of a creation of the space, the Native American Cultural Center opened its doors at 26 High Street.</p>
-    </div>
-
-    <!-- PLACEHOLDER: Archival photo of the NACC opening ceremony -->
-    <img src="images/beat4/nacc-opening-2013.jpg" style="max-width: 700px; margin: 0 auto 2rem; display: block;">
-
-    <section id="scrolly4">
-      <div class="sticky-thing">
-        <div id="zoomBox4">
-          <!-- PLACEHOLDER: Continental/Pacific-scale map, heavily populated with dots -->
-          <img id="scrollyPhoto4" class="photoDiv" src="images/beat4/map-growing.png">
-        </div>
-      </div>
-      <div class="scrolly-overlay">
-        <div class="step" id="step14">
-          <p>And continued to grow. Through the 2010s, a succession of Native deans and assistant directors reshaped what the space meant and could hold. In 2016, Kapi'olani Laronal (<span class="nacc-blue">Kanaka Maoli, Haida/Tsimsian tribes of Alaska</span>) became the first assistant director to the space, bringing Native Hawaiian and Pacific Islander community formally into the center.</p>
-        </div>
-        <!-- <div class="step" id="step15">
-          <p>Many nations, one house.</p>
-        </div> -->
-        <div class="step" id="step16" style="margin-bottom: 10rem;">
-          <!-- VISUAL: Map resolves to wall of nations flags -->
-          <p></p>
-        </div>
-      </div>
-    </section>
-
     <!-- PLACEHOLDER: Wall of nations flags photo, full-width -->
     <img src="images/beat4/wall-of-nations.jpg" style="max-width: 900px; margin: 0 auto 2rem; display: block;">
-
-  <!-- ═══════════════════════════════════════
-    BEAT 5: CODA
-  ═══════════════════════════════════════ -->
-    <div style="padding: 4%;">
-      <p>And the story of 26 High Street is still being written. With each new class, the space is left changed.</p>
-    </div>
-
-    <!-- PLACEHOLDER: Recent milestones timeline (Illustrator-made, seen not narrated) -->
-    <img src="images/beat5/recent-milestones-timeline.png" style="max-width: 800px; margin: 0 auto 4rem; display: block;">
-
-    <!-- PLACEHOLDER: Gallery of archival NACC photos -->
-    <img src="images/beat5/nacc-gallery.jpg" style="max-width: 800px; margin: 0 auto 4rem; display: block;">
 
   <!-- ═══════════════════════════════════════
     HERO STATEMENT: "One house."
@@ -794,7 +777,12 @@
           <br><br>To the Native American Cultural Center at 26 High St. and the people who make it what it is— especially Dean M and AD Denise Morales!
           <br><br>To Professor Aaron Reiss for his continued support and guidance that carried this project!
           <br><br>And to the kūpuna, ancestors, and elders— every person who has paved the way at this institution and carried this work forward so that I could stand here now! Mahalo.
-          <br><br>Last credits to https://www.gingko.pro/ for itʻs helpful horizontal scroll implementation I referenced.
+          <br><br>Technical credits: https://www.gingko.pro/ for itʻs helpful horizontal scroll implementation I referenced; datawrapper for the first map's basemap; https://native-land.ca/ for tribal location reference, https://www.travelalaska.com/things-to-do/alaska-native-culture/cultures/tlingit-haida-eyak-tsimshian for information on tribal residencies, Google My Maps for second map basemap and plotting.
+          <br><br>Research credits: Mara Gutierrez '25 senior thesis, “Small and Mighty: The Evolution of the Native Community at Yale”
+          <br><br>https://news.yale.edu/2010/10/29/yale-celebrates-first-native-american-graduate-henry-roe-cloud 
+          <br><br>https://yaledailynews.com/articles/a-native-place 
+
+          <br>Note: Due to time constraints, </br>
         </p>
       </div>
     </div>
@@ -810,7 +798,6 @@
         <button id="continueBtn">Continue Anyway</button>
       </div>
     </div>
-
 
 <!-- ═══════════════════════════════════════
    SCRIPT 1: VERTICAL SCROLLAMA IMAGE SWAPS
@@ -906,6 +893,18 @@
   })
 
 </script>
+<script>
+    // SCROLLY ZOOM IN
+    var zoomObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.querySelector("img").style.transform = "scale(2.9) translate(11%, -15%)";
+      zoomObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.3 });
+
+  zoomObserver.observe(document.querySelector("#ctMapFrame"));
+</script>
 
 <!-- ═══════════════════════════════════════
    SCRIPT 2: SCROLLAMA INITIALIZATION
@@ -934,9 +933,9 @@
 
 <!-- ═══════════════════════════════════════
    SCRIPT 3: GSAP HORIZONTAL SCROLL
-   (Beats 2 & 3)
+   (Beats 2, 3, & 4)
 
-   HOW THIS WORKS:
+   HOW THIS WORKS: 
    ────────────────
    1. We grab all the .h-panel elements inside
       #horizontal-track. There are 12 panels,
@@ -1052,36 +1051,55 @@
 // <!-- ═══════════════════════════════════════
 //    SCRIPT 4: Land Acknowledgment "Spoken Word" Highlight
 //    ═══════════════════════════════════════ -->
+
 <script>
-// Speed: milliseconds per word. Lower = faster.
-  var SPEED = 400;
+  // ── Transcript highlight on scroll into view ──
+  var SPEED = 350;
 
-  // Find all elements with class "transcript"
-  var transcripts = document.querySelectorAll(".transcript");
+  // Set up an observer that fires when a .transcript
+  // element enters the viewport
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      // Only fire when scrolling INTO view, not out
+      if (!entry.isIntersecting) return;
 
-  transcripts.forEach(function (el) {
-    // Split the paragraph's text into individual words,
-    // wrap each in a <span>, and replace the original text
-    var words = el.textContent.split(/\s+/);
-    el.innerHTML = words
-      .map(function (word) {
-        return '<span>' + word + '</span>';
-      })
-      .join(' ');
+      var el = entry.target;
 
-    // Get all the spans we just created
-    var spans = el.querySelectorAll("span");
-    var i = 0;
+      // Only run once per transcript paragraph
+      if (el.getAttribute("data-split") === "true") return;
+      el.setAttribute("data-split", "true");
 
-    // Every SPEED milliseconds, mark the next word as "spoken"
-    var interval = setInterval(function () {
-      if (i < spans.length) {
-        spans[i].classList.add("spoken");
-        i++;
-      } else {
-        clearInterval(interval); // Stop when all words are highlighted
-      }
-    }, SPEED);
+      // Split text into spans, same as before
+      var words = el.textContent.split(/\s+/);
+      el.innerHTML = words
+        .map(function (word) { return '<span>' + word + '</span>'; })
+        .join(' ');
+
+      var spans = el.querySelectorAll("span");
+      var i = 0;
+      var interval = setInterval(function () {
+        if (i < spans.length) {
+          spans[i].classList.add("spoken");
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, SPEED);
+
+      // Stop observing this element — it's done
+      observer.unobserve(el);
+    });
+  }, {
+    // threshold: 0.5 means "fire when 50% of the
+    // element is visible." Feels natural — the
+    // highlight starts when you're looking at it,
+    // not when the first pixel peeks in.
+    threshold: 0.5
+  });
+
+  // Observe every .transcript paragraph
+  document.querySelectorAll(".transcript").forEach(function (el) {
+    observer.observe(el);
   });
 </script>
 
