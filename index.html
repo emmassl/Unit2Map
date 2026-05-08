@@ -353,6 +353,19 @@
         display: block;
       }
 
+      .h-card .img-row {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.8rem;
+      }
+
+      .h-card .img-row img {
+        flex: 1;
+        max-width: none;
+        height: 140px;
+        object-fit: cover;
+      }
+
       /* Year labels that can sit above the card for emphasis */
       .h-year {
         font-family: "Lexend", sans-serif;
@@ -621,7 +634,7 @@
   ═══════════════════════════════════════ -->
     <section id="horizontal-section">
       <!-- Background map — fills viewport, swapped by JS -->
-      <img id="horizontal-map" src="images/beat2/usa-map-empty.png">
+      <img id="horizontal-map" src="images/dotmap/dot0.jpeg">
 
       <!-- Horizontal track — this slides left via GSAP translateX -->
       <div id="horizontal-track">
@@ -629,7 +642,7 @@
         <!-- ── BEAT 2: Origins ── -->
 
         <!-- Panel 1: Henry Roe Cloud -->
-        <div class="h-panel" data-map="images/beat2/usa-map-hochunk.png">
+        <div class="h-panel" data-map="images/dotmap/dot1.jpeg">
           <div class="h-card">
             <p>In 1906, more than two hundred years after Yale's founding, Henry Roe Cloud (<span class="nacc-blue">Ho-Chunk</span>) became one of the first known Native students at Yale. For decades, students like him arrived alone.</p>
             <!-- PLACEHOLDER: Portrait of Henry Roe Cloud -->
@@ -638,89 +651,95 @@
         </div>
 
         <!-- Panel 2: Transition & Philip Deloria -->
-        <div class="h-panel" data-map="images/beat2/usa-map-deloria.png">
+        <div class="h-panel" data-map="images/dotmap/dot2.jpeg">
           <div class="h-card">
             <p>Then slowly, a few more arrived:</p>
             <p>1960 — Philip S. (Sam) Deloria (<span class="nacc-blue">Standing Rock Sioux Tribe, Yankton Dakota</span>) arrives at Yale College, later returning for law school. He goes on to become a leading figure in Native American policy.</p>
-            <img src="images/beat2/philip-deloria.jpg">
+            <img src="images/samdeloria.jpeg">
           </div>
         </div>
 
         <!-- Panel 3: Linc Kesler -->
-        <div class="h-panel" data-map="images/beat2/usa-map-kesler.png">
+        <div class="h-panel" data-map="images/dotmap/dot3.jpeg">
           <div class="h-card">
             <p>1967 — Linc Kesler (<span class="nacc-blue">Oglala Lakota from Pine Ridge, South Dakota</span>) enters Yale, graduating in 1971. He goes on to found the First Nations Studies Programs (now First Nations and Indigenous Studies) at the University of British Columbia.</p>
-            <img src="images/beat2/linc-kesler.jpg">
+            <img src="images/linckesler.jpg">
           </div>
         </div>
 
         <!-- Panel 4: Allison Boucher Krebs -->
-        <div class="h-panel" data-map="images/beat2/usa-map-krebs.png">
+        <div class="h-panel" data-map="images/dotmap/dot4.jpeg">
           <div class="h-card">
             <p>1969 — Allison Boucher Krebs, also known as "Ally" and "Chi-Gaumee-Kwe," (<span class="nacc-blue">Sault Ste. Marie Tribe of Chippewa Indians in Michigan</span>) is admitted in the first class of women undergraduates at Yale. She becomes a lifelong advocate for Indigenous archives and youth.</p>
-            <img src="images/beat2/allison-krebs.jpg">
+            <img src="images/allisonkrebs.jpeg">
           </div>
         </div>
 
         <!-- ── BEAT 3: Building community ── -->
 
         <!-- Panel 5: Late 1960s context -->
-        <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
+        <div class="h-panel" data-map="images/dotmap/dot4.jpeg" data-map-opacity="0.5">
           <div class="h-card">
             <p>The late 1960s shook up American campuses. The Civil Rights movement, anti-war protests, and the rise of the Red Power movement— Alcatraz in 1969, Wounded Knee in 1973, all pushed universities to confront the narratives they taught and which students they served.</p>
           </div>
         </div>
 
-        <!-- Panel 6: Cultural centers at Yale -->
-        <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
+        <!-- Panel 6: Cultural centers at Yale + 1980s-90s network forming -->
+        <div class="h-panel" data-map="images/dotmap/dot4.jpeg" data-map-opacity="0.5">
           <div class="h-card">
             <p>At Yale, students of color began organizing for cultural centers of their own. The Afro-American Cultural Center, also known as The House, opened in 1969, with La Casa Cultural following in 1977, and the Asian American Cultural Center in 1981. For Native students, no such space existed yet.</p>
             <!-- PLACEHOLDER: Small inset timeline graphic (Illustrator-made) showing
                  The House (1969), La Casa (1977), AACC (1981), and a dot for the eventual NACC -->
-          </div>
-        </div>
-
-        <!-- Panel 7: 1980s-90s network forming -->
-        <div class="h-panel" data-map="images/beat3/map-timeline-1.png">
-          <div class="h-card">
             <p>But the community was still growing, and a network was forming. Through the 1980s and 90s, a generation of students, scholars, and staff worked on filling that institutional gap, one course, organization, and hire at a time.</p>
           </div>
         </div>
 
+        <!-- Panel 7: 1980s-90s network forming -->
+        <!-- <div class="h-panel" data-map="images/dotmap/dot4.jpeg" data-map-opacity="0.5">
+          <div class="h-card">
+            <p>But the community was still growing, and a network was forming. Through the 1980s and 90s, a generation of students, scholars, and staff worked on filling that institutional gap, one course, organization, and hire at a time.</p>
+          </div>
+        </div> -->
+
         <!-- Panel 8: John Bathke / ANAAY -->
-        <div class="h-panel" data-map="images/beat3/map-timeline-bathke.png">
+        <div class="h-panel" data-map="images/dotmap/dot5.jpeg">
           <div class="h-card">
             <p>In 1989, John Bathke (Yale '93, <span class="nacc-blue">Diné</span>) founded the Association of Native Americans at Yale (ANAAY), the first formal Native student organization on campus, today known as Native and Indigenous Student Association at Yale (NISAY). Four years later, Dean Shannon Salinas granted ANAAY a single room inside the Chicano Cultural House (today merged into La Casa Cultural), affectionately referred to as the "Native American Cultural Center."</p>
-            <img src="images/beat3/john-bathke.jpg">
+            <img src="images/johnbathke.jpeg">
           </div>
         </div>
 
         <!-- Panel 9: Jace Weaver & Rick Chavolla -->
-        <div class="h-panel" data-map="images/beat3/map-timeline-weaver-chavolla.png">
+        <div class="h-panel" data-map="images/dotmap/dot6.jpeg">
           <div class="h-card">
             <p>Not long after, Jace Weaver (<span class="nacc-blue">Cherokee</span>) joined the faculty as Yale's first Native scholar in 1996. Rick Chavolla (<span class="nacc-blue">Kumeyaay/Chicano</span>) followed in 1997.</p>
-            <img src="images/beat3/weaver-chavolla.jpg">
+            <div class="img-row">
+              <img src="images/jaceweaver.jpg"> <img src="images/rickchavolla.jpg">
+            </div>
           </div>
         </div>
 
         <!-- Panel 10: Advocacy & NACC sign -->
-        <div class="h-panel" data-map="images/beat3/map-timeline-advocacy.png">
+        <div class="h-panel" data-map="images/dotmap/dot6.jpeg" data-map-opacity="0.5">
           <div class="h-card">
             <p>Students kept advocating. Demonstrations, op-eds, sit-ins and meetings with administrators emphasized the importance of cultural centers, and demands for a permanent NACC space on campus and institutional recognition. In 1999, after the NACC moved to the third floor of the Asian American Cultural Center and gained access to four more rooms, a sign for the NACC went up outside of the AACC, officially recognizing the space by Yale administration, with Chavolla assuming role as first director of the NACC. But the NACC still had no building center of its own.</p>
-            <img src="images/beat3/ydn-clippings.jpg">
           </div>
         </div>
 
         <!-- Panel 11: Mt. Pleasant, Lowe, Blackhawk -->
-        <div class="h-panel" data-map="images/beat3/map-timeline-2000s.png">
+        <div class="h-panel" data-map="images/dotmap/dot7.jpeg">
           <div class="h-card">
             <p>The following decade became about taking up and holding space. Alyssa Mt. Pleasant (<span class="nacc-blue">Tuscarora</span>) became the first Native faculty member dedicated to Native American Studies in 2006. Shelly Lowe (<span class="nacc-blue">Diné</span>) became the NACC's first sole director in 2007. And in 2009, Ned Blackhawk (<span class="nacc-blue">Western Shoshone</span>) arrived as the first Native faculty member granted tenure at Yale.</p>
-            <img src="images/beat3/mt-pleasant-lowe-blackhawk.jpg">
+            <div class="img-row">
+              <img src="images/alyssamtpleasant.jpg"> 
+              <img src="images/shellylowe.jpg"> 
+              <img src="images/nedblackhawk.jpg">
+            </div>
           </div>
         </div>
 
         <!-- Panel 12: The House -->
-        <div class="h-panel" data-map="images/beat4/idk.png">
+        <div class="h-panel" data-map="images/dotmap/dot7.jpeg">
           <div class="h-card">
             <p>Finally, in 2013, two years after the announcement of a creation of the space, the Native American Cultural Center opened its doors at 26 High Street.</p>
             <img src="images/beat4/nacc-opening-2013.jpg" style="max-width: 700px; margin: 0 auto 2rem; display: block;">
@@ -728,46 +747,61 @@
         </div>
 
         <!-- Panel 13: Pasifika Introduction -->
-        <div class="h-panel" data-map="images/beat4/idk.png">
+        <div class="h-panel" data-map="images/dotmap/dot8.jpeg">
           <div class="h-card">
             <p>And continued to grow. Through the 2010s, a succession of Native deans and assistant directors reshaped what the space meant and could hold. In 2016, Kapi'olani Laronal (<span class="nacc-blue">Kanaka Maoli, Haida/Tsimshian tribes of Alaska</span>) became the first assistant director to the space, bringing Native Hawaiian and Pacific Islander community formally into the center.</p>
-            <img src="images/beat3/mt-pleasant-lowe-blackhawk.jpg">
+            <img src="images/kapiolanilaronal.jpeg">
           </div>
         </div>
 
         <!-- Panel 14: Dots populating for all the flags -->
-        <div class="h-panel" data-map="images/beat4/idk.png">
+        <div class="h-panel" data-map="images/dotmap/dot9.jpeg">
           <div class="h-card">
             <p>And the story of 26 High Street is still being written. With each new class, the space is left changed.</p>
-            <img src="images/beat3/mt-pleasant-lowe-blackhawk.jpg">
           </div>
         </div>
+
+        <!-- Panel 15: Dots populating for all the flags -->
+        <div class="h-panel" data-map="images/dotmap/dot10.jpeg">
+          <div class="h-card">
+            <p>Presence of inidgenous on campus larger than ever</p>
+          </div>
+        </div>
+
+        <!-- Panel 17: dots fade into flags
+        <div class="h-panel" data-map="images/Wallofnations.jpeg">
+          <div class="h-card">
+            <p>motr</p>
+          </div>
+        </div> -->
 
         <!-- VISUAL: Map resolves to wall of nations flags -->
 
       </div><!-- end #horizontal-track -->
     </section><!-- end #horizontal-section -->
 
-    <!-- PLACEHOLDER: Wall of nations flags photo, full-width -->
-    <img src="images/beat4/wall-of-nations.jpg" style="max-width: 900px; margin: 0 auto 2rem; display: block;">
+    <!-- PLACEHOLDER: Wall of nations flags photo, full-width
+    <img src="images/dotmap/dot10.jpeg" style="max-width: 900px; margin: 0 auto 2rem; display: block;"> -->
 
   <!-- ═══════════════════════════════════════
     HERO STATEMENT: "One house."
   ═══════════════════════════════════════ -->
-    <div class="hero-statement">
-      <h2>Many Nations. One house.</h2>
+    <div class="hero-statement" style="position: relative; overflow: hidden;">
+      <img class="hero__img" src="images/Wallofnations.jpeg">
+      <div class="hero__scrim" style="background: rgba(0, 53, 107, 0.65);"></div>
+      <h2 style="position: relative; z-index: 1;">Many Nations. One house.</h2>
     </div>
 
-    <!-- PLACEHOLDER: NACC house today -->
-    <img src="images/beat5/nacc-today.jpg" style="max-width: 900px; margin: 4rem auto; display: block;">
+    <!-- PLACEHOLDER: NACC house today
+    <img src="images/beat5/nacc-today.jpg" style="max-width: 900px; margin: 4rem auto; display: block;"> -->
 
   <!-- ═══════════════════════════════════════
     CREDITS
   ═══════════════════════════════════════ -->
-    <div class="hero">
-      <img class="hero__img" src="images/hero/nacc-hero.jpg">
-      <div class="hero__scrim" style="background: rgba(0, 0, 0, 0.6);"></div>
-      <div class="hero__text" style="justify-content: flex-end; padding-bottom: 4rem;">
+    <div class="hero" style="height: auto; min-height: 100vh;">
+      <!-- <img class="hero__img" src="images/hero/nacc-hero.jpg"> -->
+      <div class="hero__scrim" style="background: #63b8e7"></div>
+      <div class="hero__text" style="position: relative; padding: 4rem 1.5rem;">
         <h1 class="hero__headline" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Special Thanks</h1>
         <p class="hero__subhead" style="font-size: 0.95rem; max-width: 40rem; text-align: left; line-height: 1.8;">
           This project would not exist without Mara Gutierrez— her assistance over text, and her stunning, deeply researched thesis on the NACC and Indigenous presence at Yale made much of this story possible. 
@@ -1018,30 +1052,25 @@
         // We use it to figure out which panel is in view
         // and swap the background map image.
         onUpdate: function (self) {
-          // self.progress goes from 0 to 1 across
-          // the full horizontal scroll
           var progress = self.progress;
-
-          // Figure out which panel index we're on.
-          // progress * (panels.length - 1) gives us
-          // a float; Math.round snaps to nearest panel.
           var panelIndex = Math.round(progress * (panels.length - 1));
 
-          // Clamp to valid range just in case
           if (panelIndex < 0) panelIndex = 0;
           if (panelIndex >= panels.length) panelIndex = panels.length - 1;
 
-          // Read the data-map attribute from the current panel
+          // Swap map image
           var newSrc = panels[panelIndex].getAttribute("data-map");
-
-          // Only swap the image if it's different from current
-          // (avoids flickering from constant src reassignment)
           if (newSrc && newSrc !== currentMapSrc) {
             mapImg.src = newSrc;
             currentMapSrc = newSrc;
             console.log("Horizontal map swap → panel " + panelIndex + ": " + newSrc);
           }
+
+          // Always update opacity, even if src didn't change
+          var newOpacity = panels[panelIndex].getAttribute("data-map-opacity") || "1";
+          mapImg.style.opacity = newOpacity;
         }
+        
       }
     });
 
