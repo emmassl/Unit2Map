@@ -100,7 +100,7 @@
         font-size: clamp(3rem, 6vw, 5rem);
         line-height: 1.08;
         letter-spacing: -0.02em;
-        color: #fff;
+        color: #faf8f5;
         max-width: 400vw;
         margin-bottom: 0.4rem;
       }
@@ -224,7 +224,7 @@
       .step {
         margin: 0 auto 2rem auto;
         margin-bottom: 25rem;
-        background-color: #fff;
+        background-color: #faf8f5;
         color: black;
         text-align: center;
       }
@@ -324,7 +324,7 @@
       /* The text card that appears at the bottom of each panel.
          Semi-transparent white background so the map shows through. */
       .h-card {
-        background: rgba(255, 255, 255, 0.92);
+        background: #faf8f5;
         max-width: 32rem;
         padding: 1.5rem 2rem;
         font-family: "Yale", serif;
@@ -434,7 +434,7 @@
         font-weight: 400;
         font-size: clamp(2.5rem, 5vw, 4.5rem);
         line-height: 1.15;
-        color: #fff;
+        color: #faf8f5;
         letter-spacing: -0.01em;
       }
 
@@ -591,12 +591,14 @@
     </section>
     <p class="transcript" style="padding-left: 5%; padding-right: 2%; margin-top: 19%; margin-bottom: 20%"> have stewarded through generations the lands and waterways of what is now the state of Connecticut. We honor and respect the enduring relationship that exists between these peoples and nations and this land."</p>
   </div>
-  <div style="padding: 4%; margin-top: 5%;">
+  <div style="padding: 4%; margin-top: 5%; margin-bottom: 11%;">
     <p>Read above is Yale University's land acknowledgment— the way you've heard it spoken aloud at the start of public events, ceremonies, or meetings on campus.
       Land acknowledgments are formal statements recognizing the Indigenous peoples who have long stewarded a place, and whose presence endures today. Yet the acknowledgment names nations most Yalies have never seen on a map.</p>
+  </div>
+  <div style="padding: 4%; margin-top: 5%;">
     <p>This is the story of how those nations, and many, many more, converge on one house at <span style="color: #63b8e7;">26 High Street.</span></p>
   </div>
-  <div id="ctMapFrame" style="padding: 4%; overflow: hidden; max-width: 40vw; display: block; margin: 0 auto;">
+  <div id="ctMapFrame" style="padding: 4%; overflow: hidden; max-width: 40vw; display: block; margin: 0 auto; margin-bottom: 10%;">
       <img id="ctMap" class="photoDiv" src="images/ct10.jpg"
           style="transform: scale(1.3); transition: transform 3s ease;">
   </div>
@@ -605,9 +607,13 @@
     TRANSITION: Yale context paragraph
     (normal vertical prose before horizontal begins)
   ═══════════════════════════════════════ -->
-    <div style="padding: 4%;">
+  <section 
+  style="background-color: #14384a;">
+  <!-- style="background-color: #D4DBCA;" -->
+    <div style="padding: 4%; color: #faf8f5;">
       <p>Yale was founded in 1701 on Quinnipiac land. From its earliest years, its relationships with Indigenous peoples was shaped more by extraction than exchange— through missionization, the near-total exclusion of Native students from its classrooms, and the accumulation of Native ancestral remains and sacred objects, where repatriation work is still ongoing.</p>
     </div>
+
 
   <!-- ═══════════════════════════════════════
     BEATS 2, 3, 4: HORIZONTAL SCROLL
@@ -677,17 +683,58 @@
 
         <!-- ── BEAT 3: Building community ── -->
 
-        <!-- Panel 5: Late 1960s context -->
-        <div class="h-panel" data-map="images/dotmap/dot4.jpeg" data-map-opacity="0.5">
-          <div class="h-card">
-            <p>The late 1960s shook up American campuses. The Civil Rights movement, anti-war protests, and the rise of the Red Power movement— Alcatraz in 1969, Wounded Knee in 1973, all pushed universities to confront the narratives they taught and which students they served.</p>
-          </div>
+        <!-- Panel 5: Late 1960s context — scrapbook images floating over faded map -->
+      <div class="h-panel" data-map="images/dotmap/dot4.jpeg" data-map-opacity="0.4">
+
+        <!-- Scrapbook images — positioned absolutely within the panel.
+            Each one is a small photo with a caption underneath.
+            Adjust top/left percentages to scatter them around the screen. -->
+
+        <div style="position: absolute; top: 8%; left: 5%; max-width: 180px; text-align: center;">
+          <img src="images/aimflag.png" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+          <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5; display: block; margin-top: 0.3rem;">Flag of the American Indian Movement (AIM), an organization active in the Red Power movement</span>
         </div>
+
+        <div style="position: absolute; top: 35%; left: 32%; max-width: 170px; text-align: center;">
+          <img src="images/alcatraz.jpg" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+          <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5; display: block; margin-top: 0.3rem;">Occupation of Alcatraz, 1969</span>
+        </div>
+
+        <div style="position: absolute; top: 5%; left: 58%; max-width: 200px; text-align: center;">
+          <img src="images/wk.jpg" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+          <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5; display: block; margin-top: 0.3rem;">Wounded Knee Protests, 1973</span>
+        </div>
+
+        <div style="position: absolute; top: 15.5%; left: 78%; max-width: 160px; text-align: center;">
+          <img src="images/mayday.jpg" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+          <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5; display: block; margin-top: 0.3rem;">May Day Rally at Yale, 1970</span>
+        </div>
+
+        <div class="h-card">
+          <p>The late 1960s shook up American campuses. The Civil Rights movement, anti-war protests, and the rise of the Red Power movement— Alcatraz in 1969, Wounded Knee in 1973, all pushed universities to confront the narratives they taught and which students they served.</p>
+        </div>
+      </div>
 
         <!-- Panel 6: Cultural centers at Yale + 1980s-90s network forming -->
         <div class="h-panel" data-map="images/dotmap/dot4.jpeg" data-map-opacity="0.5">
+          <div style="position: absolute; top: 8%; left: 7%; max-width: 180px; text-align: center;">
+            <img src="images/thehouse.png" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+            <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5;; display: block; margin-top: 0.3rem;">Yale Daily News announces opening of the House, 1969</span>
+          </div>
+  
+          <div style="position: absolute; top: 35%; left: 34%; max-width: 170px; text-align: center;">
+            <img src="images/aacc.jpg" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+            <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5;; display: block; margin-top: 0.3rem;">AACC 40th anniversary mural, 2021</span>
+          </div>
+
+          <!-- HELP! -->
+          <!-- <div style="position: absolute; top: 5%; left: 60%; max-width: 200px; text-align: center;">
+            <img src="images/aacc.jpg" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+            <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5;; display: block; margin-top: 0.3rem;">AACC 40th anniversary mural, 2021</span>
+          </div> -->
+
           <div class="h-card">
-            <p>At Yale, students of color began organizing for cultural centers of their own. The Afro-American Cultural Center, also known as The House, opened in 1969, with La Casa Cultural following in 1977, and the Asian American Cultural Center in 1981. For Native students, no such space existed yet.</p>
+            <p>At Yale, students of color began organizing for cultural centers of their own. The Afro-American Cultural Center, also known as The House, opened in 1969, with La Casa Cultural following in 1977, and the Asian American Cultural Center (AACC) in 1981. For Native students, no such space existed yet.</p>
             <!-- PLACEHOLDER: Small inset timeline graphic (Illustrator-made) showing
                  The House (1969), La Casa (1977), AACC (1981), and a dot for the eventual NACC -->
             <p>But the community was still growing, and a network was forming. Through the 1980s and 90s, a generation of students, scholars, and staff worked on filling that institutional gap, one course, organization, and hire at a time.</p>
@@ -721,6 +768,23 @@
 
         <!-- Panel 10: Advocacy & NACC sign -->
         <div class="h-panel" data-map="images/dotmap/dot6.jpeg" data-map-opacity="0.5">
+          <div style="position: absolute; top: 8%; left: 7%; max-width: 165px; text-align: center;">
+            <img src="images/90sprotests2.png" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+            <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5;; display: block; margin-top: 0.3rem;">Yale Daily News, 1997</span>
+          </div>
+  
+          <div style="position: absolute; top: 24%; left: 38%; max-width: 188px; text-align: center;">
+            <img src="images/90sprotests.png" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+            <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5;; display: block; margin-top: 0.3rem;">Yale Daily News, 1997</span>
+          </div>
+          <!-- <div style="position: absolute; top: 9%; left: 7%; max-width: 200; text-align: center;">
+            <img src="images/90sprotests.png" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+            <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5;; display: block; margin-top: 0.3rem;">Yale Daily News, 1997</span>
+          </div>
+          <div style="position: absolute; top: 35%; left: 32%; max-width: 170px; text-align: center;">
+            <img src="images/90sprotests2.png" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+            <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5;; display: block; margin-top: 0.3rem;">Yale Daily News, 1997</span>
+          </div> -->
           <div class="h-card">
             <p>Students kept advocating. Demonstrations, op-eds, sit-ins and meetings with administrators emphasized the importance of cultural centers, and demands for a permanent NACC space on campus and institutional recognition. In 1999, after the NACC moved to the third floor of the Asian American Cultural Center and gained access to four more rooms, a sign for the NACC went up outside of the AACC, officially recognizing the space by Yale administration, with Chavolla assuming role as first director of the NACC. But the NACC still had no building center of its own.</p>
           </div>
@@ -739,10 +803,13 @@
         </div>
 
         <!-- Panel 12: The House -->
-        <div class="h-panel" data-map="images/dotmap/dot7.jpeg">
+        <div class="h-panel" data-map="images/dotmap/dot7.jpeg" data-map-opacity="0.4">
+          <div style="position: absolute; top: 9%; left: 7%; max-width: 800px; text-align: center;">
+            <img src="images/naccopen.png" style="width: 100%; box-shadow: 2px 3px 12px rgba(0,0,0,0.25);">
+            <span style="font-family: Lexend, sans-serif; font-size: 0.9rem; color: #faf8f5;; display: block; margin-top: 0.3rem;">Blue Feather Drum group celebrating the opening of the NACC</span>
+          </div>
           <div class="h-card">
             <p>Finally, in 2013, two years after the announcement of a creation of the space, the Native American Cultural Center opened its doors at 26 High Street.</p>
-            <img src="images/beat4/nacc-opening-2013.jpg" style="max-width: 700px; margin: 0 auto 2rem; display: block;">
           </div>
         </div>
 
@@ -757,14 +824,13 @@
         <!-- Panel 14: Dots populating for all the flags -->
         <div class="h-panel" data-map="images/dotmap/dot9.jpeg">
           <div class="h-card">
-            <p>And the story of 26 High Street is still being written. With each new class, the space is left changed.</p>
+            <p>And the story of 26 High Street is still being written. With each new class, the space, and Yale, are left changed— organizations forming, Indigenous language courses, celebrations of Pacific heritage, a Native studies certificate. New milestones, and new nations on the wall.</p>
           </div>
         </div>
-
         <!-- Panel 15: Dots populating for all the flags -->
         <div class="h-panel" data-map="images/dotmap/dot10.jpeg">
           <div class="h-card">
-            <p>Presence of inidgenous on campus larger than ever</p>
+            <p>Today, Yale's Indigenous community spans more nations than at any point in the university's history, currently holding the largest cohort of Native faculty, and a network of students, scholars, and staff that stretches across the continent and out across the globe.</p>
           </div>
         </div>
 
@@ -782,6 +848,10 @@
 
     <!-- PLACEHOLDER: Wall of nations flags photo, full-width
     <img src="images/dotmap/dot10.jpeg" style="max-width: 900px; margin: 0 auto 2rem; display: block;"> -->
+    <div style="padding: 4%; margin-top: 5%; color: #faf8f5;">
+      <p>Each flag on the Wall of Nations, pictured below, in 26 High St, represents students and faculty that have passed through yale from the place they call home.</p> 
+    </div>
+  </section>
 
   <!-- ═══════════════════════════════════════
     HERO STATEMENT: "One house."
@@ -789,7 +859,7 @@
     <div class="hero-statement" style="position: relative; overflow: hidden;">
       <img class="hero__img" src="images/wallofnations.jpeg">
       <div class="hero__scrim" style="background: rgba(0, 53, 107, 0.65);"></div>
-      <h2 style="position: relative; z-index: 1;">Many Nations. One house.</h2>
+      <h2 style="position: relative; z-index: 1;">Many Nations. One home.</h2>
     </div>
 
     <!-- PLACEHOLDER: NACC house today
@@ -815,8 +885,9 @@
           <br><br>Research credits: Mara Gutierrez '25 senior thesis, “Small and Mighty: The Evolution of the Native Community at Yale”
           <br><br>https://news.yale.edu/2010/10/29/yale-celebrates-first-native-american-graduate-henry-roe-cloud 
           <br><br>https://yaledailynews.com/articles/a-native-place 
+          Image credits: Wounded Knee Occupation Poster (https://www.nlm.nih.gov/nativevoices/timeline/535.html)
 
-          <br>Note: Due to time constraints, </br>
+          <br>Note: Due to time constraints, a few elements of this scrollytelly are not entirely accurate</br>
         </p>
       </div>
     </div>
